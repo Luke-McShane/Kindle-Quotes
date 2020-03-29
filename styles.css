@@ -1,0 +1,42 @@
+header {
+    font-family: 'Bad Script';
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#textDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+#quote {
+    height: 6em;
+    background-color: brown;
+}
+
+#author {
+    height: 2em;
+    background-color: gold;
+}
+
+#book {
+    height: 2em;
+    background-color: cornflowerblue;
+}
+
+#buttonDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+button {
+    margin: 0em 1em;
+    border-radius: 1em;
+}
