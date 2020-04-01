@@ -22,12 +22,52 @@
                 <h3 id="author">Arthur Schopenhauer</h3>
                 <h3 id="book"></h3>
             </div>
-            <div id="buttonDiv">
+            <div class="buttonDiv">
                 <button id="generateQuote">Generate Quote</button>
                 <button id="selectBooks">Select Books</button>
             </div>
         </div>
         
+        <div class="modal">
+            <div class="modal-content">
+                <div id="innerModalDiv">
+                <table style="width:100%; border: 1px solid black;" id="modalTextDiv">
+                    <tr>
+                        <th style="text-align: left; height: 0.5em;">Selected</th>
+                        <th style="text-align: left;">Author</th>
+                        <th style="text-align: left;">Book Title</th>
+                    </tr>
+                    <tr>
+                        <td width="5%">
+                            <label class="container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td width="30%">James Joyce</td>
+                        <td width="65%">Ulysses</td>
+                    </tr>
+                    <tr>
+                        <td width="5%">
+                            <label class="container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>John Steinbeck</td>
+                        <td>East of Eden</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="buttonDiv" id="modalButtonDiv">
+                    <button id="saveButton">Save</button>
+                    <button id="cancelButton">Cancel</button>
+                </div>
+            </div>
+            
+          
+          </div>
+
         <script src="javascript.js" async defer></script>
     </body>
 </html>
