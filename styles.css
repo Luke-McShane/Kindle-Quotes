@@ -154,53 +154,68 @@ button:hover {
   }
   
   /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+#modalText {
     color: black;
     text-decoration: none;
-    cursor: pointer;
-  }
+}
 
-  /* #modalTextDiv {
-      height: 20%;
-      overflow: auto;
-  } */
+#modalElementDiv {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+width: 90%;
+}
 
-  #modalText {
-      color: black;
-      text-decoration: none;
-  }
+table, th, td {
+border: 1px solid black;
+padding: 0.5em;
+}
 
-  #modalElementDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    /* height: 10px; */
-    width: 90%;
-  }
+table {
+    width: 100%; 
+}
 
-  table, th, td {
-    border: 1px solid black;
-    padding: 0.5em;
-  }
+td {
+    height: 1em;
+    /* width: 5%; */
+}
 
-  td {
-      height: 1em;
-  }
+th { 
+    text-align: left;
+}
 
-  #innerModalDiv {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;
-    height: 90%; 
-    overflow: auto;
-  }
+#checkbox {
+    width: 2%;
+}
+
+#authorModal {
+    width: 30%;
+}
+
+#bookModal {
+    width: 68%;
+}
+
+#innerModalDiv {
+display: flex;
+flex-direction: row; 
+justify-content: center;
+align-items: flex-start;
+height: 90%; 
+overflow: auto;
+}
