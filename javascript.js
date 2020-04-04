@@ -84,7 +84,7 @@ function quoteGen() {
     let currentQuote = Math.floor(Math.random() * quotesFiltered.length-1);
     let quote = document.getElementById("quote");
 
-    console.log(quotesFiltered);
+    //console.log(quotesFiltered);
     quote.textContent = quotesFiltered[currentQuote].quote;
     quote.style.fontSize = getFontSize(quote.textContent.length);
     document.getElementById("author").textContent = quotesFiltered[currentQuote].author;
@@ -99,21 +99,29 @@ function checkboxChange(checkboxElement) {
 
     let thisArray = document.getElementsByClassName(checkboxElement.classList[1]);
     let book = thisArray[2].innerText.replace(/ /g, '');
+    console.log(`bannedBooksModal before action: ${bannedBooksModal}`);
 
     if(!thisArray[0].checked) {
-        if(bannedBooksModal.includes(book)) bannedBooksModal.splice(bannedBooksModal.indexOf(book), 1);
-    } else if (thisArray[0].checked) {
+        if(bannedBooksModal.includes(book)) {
+            console.log(`Unchecked...   Book: ${book} bannedBooksModal: ${bannedBooksModal} index: ${bannedBooksModal.indexOf(book)}`);
+            bannedBooksModal.splice(bannedBooksModal.indexOf(book), 1);
+        }
+    } 
+    else if (thisArray[0].checked && !bannedBooksModal.includes(book)) {
         bannedBooksModal.push(book);
+        console.log(`Checked...   Book: ${book} bannedBooksModal: ${bannedBooksModal}`);
     }
-    console.log(bannedBooksModal);
+    console.log(`bannedBooksModal after action: ${bannedBooksModal}`);
+    console.log('');
+
 }
 
 function bookSelect () {
 
     modal.style.display = "flex";
-    bannedBooksModal= bannedBooks;
+    bannedBooksModal = bannedBooks;
     //bannedBooks = bannedBooksModal;
-    console.log(quotes.length);
+    //console.log(quotes.length);
     let uniqueBooks = Array.from(new Set(quotes.map(item => item.book)))
         .map(book => {
             return {
@@ -121,7 +129,6 @@ function bookSelect () {
                 book: book
             };
         });
-
 
     tableGen(uniqueBooks.length, uniqueBooks);
     
@@ -170,38 +177,37 @@ function tableGen(length, uniqueBooks) {
 }
 
 function saveSelection() {
+    if (bannedBooksModal.length === 0) {
+        alert("Please select at least one book.")
+    } else {
+        bannedBooks = bannedBooksModal;
+        let bannedBooksTemp = [];
 
-    bannedBooks = bannedBooksModal;
-    let bannedBooksTemp = [];
+        bannedBooksModal.forEach(element => {
+            //console.log(element);
+            bannedBooksTemp.push(element.replace(/ /g, ''));
+        });
+        //console.log(`Banned Books Temp: ${bannedBooksTemp}`);
+        //console.log(`Quote: ${quotes[0].book.replace(/ /g, '')} In banedBooksTemp: ${bannedBooksTemp.includes(quotes[0].book.replace(/ /g, ''))}`)
+        quotesFiltered = quotes.filter(function(obj) {
 
-    
-    bannedBooksModal.forEach(element => {
-        //console.log(element);
-        bannedBooksTemp.push(element.replace(/ /g, ''));
-    
-        //The problem here is that the allQuotesFiltered is set each iteration to this single filter, overwriting the
-        //effects of the last iteration.
-    });
-    console.log(`Banned Books Temp: ${bannedBooksTemp}`);
-    console.log(`Quote: ${quotes[0].book.replace(/ /g, '')} In banedBooksTemp: ${bannedBooksTemp.includes(quotes[0].book.replace(/ /g, ''))}`)
-    quotesFiltered = quotes.filter(function(obj) {
-
-        //console.log(`Object.book.trim(): "${obj.book.replace(/ /g, '')}"  element: "${element.replace(/ /g, '')}"   Comparison: ${obj.book.replace(/ /g, '') === element.replace(/ /g, '')}`);
+            //console.log(`Object.book.trim(): "${obj.book.replace(/ /g, '')}"  element: "${element.replace(/ /g, '')}"   Comparison: ${obj.book.replace(/ /g, '') === element.replace(/ /g, '')}`);
+            
+            return bannedBooksTemp.includes(obj.book.replace(/ /g, ''));
+        });
+            
         
-        return bannedBooksTemp.includes(obj.book.replace(/ /g, ''));
-    });
-        
-    
-    modal.style.display = "none";
-    //console.log(quotesFiltered);
-    quoteGen();
-    //console.log(mainChunks);
-    //console.log(Object.fromEntries(mainChunks));
+        modal.style.display = "none";
+        //console.log(quotesFiltered);
+        quoteGen();
+        //console.log(mainChunks);
+        //console.log(Object.fromEntries(mainChunks));
+    }
 }
 
 function cancelSelection() {
     modal.style.display = "none";
-    console.log(bannedBooksModal);
+    //console.log(bannedBooksModal);
     bannedBooksModal = bannedBooks;
     quotes = [];
 };
@@ -220,7 +226,7 @@ function selectAll() {
         if(bannedBooksModal.includes(book)) {console.log(`List already includes this book! ${bannedBooksModal}`);console.log(bannedBooksModal);return;   }
         else {bannedBooksModal.push(book); console.log(`Book added to list! ${bannedBooksModal}`);console.log(bannedBooksModal);}
     });
-    console.log(bannedBooksModal);
+    //console.log(bannedBooksModal);
 }
 
 function deselectAll() {
@@ -234,11 +240,11 @@ function deselectAll() {
     
         //console.log(book);
 
-        if(bannedBooksModal.includes(book)) {bannedBooksModal.splice(bannedBooksModal.indexOf(book), 1); 
-            console.log(`Book removed! ${bannedBooksModal}`); console.log(bannedBooksModal); console.log(bannedBooksModal);}
+        if(bannedBooksModal.includes(book)) {bannedBooksModal.splice(bannedBooksModal.indexOf(book), 1);}
+            //console.log(`Book removed! ${bannedBooksModal}`); console.log(bannedBooksModal); console.log(bannedBooksModal);}
         else {console.log(`Book not in list! ${bannedBooksModal}`); console.log(bannedBooksModal); return; }
     });
-    console.log(bannedBooksModal);
+    //console.log(bannedBooksModal);
 }
 
 readTextFile("http://127.0.0.1:5501/allClippings.txt");
@@ -249,3 +255,5 @@ readTextFile("http://127.0.0.1:5501/allClippings.txt");
 //Save user's filtered list to cache.
 
 //Use this: 'Object.fromEntries(mainChunks)' to simplify the initial parsing process.
+
+//Improve look and feel of landing page.
