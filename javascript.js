@@ -1,19 +1,25 @@
-document.getElementById("generateQuote").addEventListener("click", quoteGen);
-document.getElementById("selectBooks").addEventListener("click", bookSelect);
-document.getElementById("saveButton").addEventListener("click", saveSelection);
-document.getElementById("cancelButton").addEventListener("click", cancelSelection);
 
-// Get the modal
-var modal = document.getElementsByClassName("modal")[0];
-var bannedBooks = [];
-var newBannedBooks = []
-var allQuotes = [];
-let mainChunks;
+// Add event listeners to the buttons contained on the main page and within the modal
+document.getElementById("quoteGen").addEventListener("click", quoteGen);
+document.getElementById("bookSelect").addEventListener("click", bookSelect);
+document.getElementById("buttonSave").addEventListener("click", saveSelection);
+document.getElementById("buttonCancel").addEventListener("click", cancelSelection);
+document.getElementById("buttonSelectAll").addEventListener("click", selectAll);
+document.getElementById("buttonDeselectAll").addEventListener("click", deselectAll);
+
+let modal = document.getElementsByClassName("modal")[0];
+let bannedBooks = [];
+let bannedBooksModal = []
+let quotes = [];
+let quotesFiltered = [];
+let chunkedText;
 
 let getFontSize = (textLength) => {
+
     let textSize = 1.5;
     const maxLen = 325;
     const maxSize = 1.5;
+
     if (textLength < 325) return `${textSize}vw`;
     textSize = (maxLen/textLength) * maxSize;
     if (textSize < 1) textSize = 1;
@@ -21,7 +27,9 @@ let getFontSize = (textLength) => {
   }
 
 function readTextFile(file){
-    var rawFile = new XMLHttpRequest();
+
+    let rawFile = new XMLHttpRequest();
+
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
     {
@@ -29,37 +37,42 @@ function readTextFile(file){
         {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-                var allText = rawFile.responseText;
-                parseClippings(allText);
+                let allText = rawFile.responseText;
+                parseText(allText);
             }
         }
     }
     rawFile.send(null);
 }
 
-function parseClippings(text) {
-    mainChunks = text.split("==========");
-    for(let i=0; i<mainChunks.length;i++) {
-       mainChunks[i] = mainChunks[i].split("\n");   
-       for(let j=0; j<mainChunks[i].length; j++) {
-        if ( mainChunks[i][j].includes("- Your Highlight on page")) {
-            mainChunks[i].splice(j, 1);
-         } else if (mainChunks[i][j].length <= 4) {
-            mainChunks[i].splice(j, 1);
+function parseText(text) {
+    chunkedText = text.split("==========");
+    for(let i=0; i<chunkedText.length;i++) {
+        chunkedText[i] = chunkedText[i].split("\n");   
+       for(let j=0; j<chunkedText[i].length; j++) {
+        if ( chunkedText[i][j].includes("- Your Highlight on page")) {
+            chunkedText[i].splice(j, 1);
+         } else if (chunkedText[i][j].length <= 4) {
+            chunkedText[i].splice(j, 1);
          };
         }
     }
+    chunkedText.pop();
+    
+    for(let i=0; i<chunkedText.length; i++){
+        chunkedText[i][0] = chunkedText[i][0].split("(");
 
-    mainChunks.pop();
-    for(let i=0; i<mainChunks.length; i++){
-        mainChunks[i][0] = mainChunks[i][0].split("(");
-        if(mainChunks[i][0][1].includes(',')) {
-            mainChunks[i][0][1] = mainChunks[i][0][1].split(',');
-            mainChunks[i][0][1][1]= mainChunks[i][0][1][1].substring(0, mainChunks[i][0][1][1].length-2).trim();
-            mainChunks[i][0][1] = `${mainChunks[i][0][1][1]} ${mainChunks[i][0][1][0]}`; 
-        } else mainChunks[i][0][1] = mainChunks[i][0][1].substring(0, mainChunks[i][0][1].length-2);
+        // Changing the order if the author's firstname is preceded by their lastname.
+        if(chunkedText[i][0][1].includes(',')) {
+            chunkedText[i][0][1] = chunkedText[i][0][1].split(',');
+            chunkedText[i][0][1][1]= chunkedText[i][0][1][1].substring(0, chunkedText[i][0][1][1].length-2).trim();
+            chunkedText[i][0][1] = `${chunkedText[i][0][1][1]} ${chunkedText[i][0][1][0]}`;
 
-        allQuotes.push({"author": mainChunks[i][0][1], "book": mainChunks[i][0][0], "quote": mainChunks[i][2]})
+        // Else we simply remove the closing bracket from the string.
+        } else chunkedText[i][0][1] = chunkedText[i][0][1].substring(0, chunkedText[i][0][1].length-2);
+
+        quotes.push({"author": chunkedText[i][0][1], "book": chunkedText[i][0][0], "quote": chunkedText[i][2]})
+        quotesFiltered.push({"author": chunkedText[i][0][1], "book": chunkedText[i][0][0], "quote": chunkedText[i][2]})
 
     }   
 
@@ -68,73 +81,171 @@ function parseClippings(text) {
     }
 
 function quoteGen() {
-    let currentQuote = Math.floor(Math.random() * allQuotes.length-1);
+    let currentQuote = Math.floor(Math.random() * quotesFiltered.length-1);
     let quote = document.getElementById("quote");
-    quote.textContent = allQuotes[currentQuote].quote;
+
+    console.log(quotesFiltered);
+    quote.textContent = quotesFiltered[currentQuote].quote;
     quote.style.fontSize = getFontSize(quote.textContent.length);
-    document.getElementById("author").textContent = allQuotes[currentQuote].author;
-    document.getElementById("book").textContent = allQuotes[currentQuote].book;
+    document.getElementById("author").textContent = quotesFiltered[currentQuote].author;
+    document.getElementById("book").textContent = quotesFiltered[currentQuote].book;
 }
 
 function populateModal() {
     let textDiv = document.getElementById("modalTextDiv");
+}
 
+function checkboxChange(checkboxElement) {
 
+    let thisArray = document.getElementsByClassName(checkboxElement.classList[1]);
+    let book = thisArray[2].innerText.replace(/ /g, '');
+
+    if(!thisArray[0].checked) {
+        if(bannedBooksModal.includes(book)) bannedBooksModal.splice(bannedBooksModal.indexOf(book), 1);
+    } else if (thisArray[0].checked) {
+        bannedBooksModal.push(book);
+    }
+    console.log(bannedBooksModal);
 }
 
 function bookSelect () {
+
     modal.style.display = "flex";
-    //debugger;
-    console.log(allQuotes.length);
-    let table = document.getElementById('modalTable');
-    //let unique = (allQuotes) => allQuotes.filter((book, i) => allQuotes.indexOf(allQuotes) == i);
-    //var myArray = ['a', 1, 'a', 2, '1'];
-    //var unique = allQuotes.filter((v, i, a) => a.indexOf(v.book) === i.book); 
-    let uniqueBooks = Array.from(new Set(allQuotes.map(item => item.book)))
+    bannedBooksModal= bannedBooks;
+    //bannedBooks = bannedBooksModal;
+    console.log(quotes.length);
+    let uniqueBooks = Array.from(new Set(quotes.map(item => item.book)))
         .map(book => {
             return {
-                author: allQuotes.find(item => item.book == book).author,
+                author: quotes.find(item => item.book == book).author,
                 book: book
             };
         });
-    console.log(uniqueBooks);
-    for(let i = 0; i < uniqueBooks.length; i++) {
 
-        var row = document.createElement("tr");
-        var checkboxCell = document.createElement("td");
-        var label = document.createElement("label");
-        label.id = "checkbox";
-        var input = document.createElement("input");
+
+    tableGen(uniqueBooks.length, uniqueBooks);
+    
+}
+
+function tableGen(length, uniqueBooks) {
+
+    let table = document.getElementById('modalTable');
+
+    for(let i = 0; i < length; i++) {
+        let row = document.createElement("tr");
+        let checkboxCell = document.createElement("td");
+        let input = document.createElement("input");
+        let authorCell = document.createElement("td");
+        let bookCell = document.createElement("td");
+
         input.type = "checkbox";
-        input.checked = "checked";
-        input.add
-        var span = document.createElement("span");
-        span.classList.add("checkmark")
-        var authorCell = document.createElement("td");
-        authorCell.id = "authorModal";
-        var bookCell = document.createElement("td");
-        bookCell.id = "bookModal";
+        input.checked = 0;
 
-        //row.id = `${i}`;
+        input.id = `inputElement${i}`;
+        authorCell.id = `authorElement${i}`;
+        bookCell.id = `bookElement${i}`;
+
+        input.classList.add("inputModal", `modalElement${i}`);
+        authorCell.classList.add("authorModal", `modalElement${i}`);
+        bookCell.classList.add("bookModal", `modalElement${i}`);
+        
         authorCell.innerText = uniqueBooks[i].author;
         bookCell.innerText = uniqueBooks[i].book;   
-        label.appendChild(input);
-        label.appendChild(span);
-        checkboxCell.appendChild(label);
+        
+        checkboxCell.appendChild(input);
         row.appendChild(checkboxCell);
         row.appendChild(authorCell);
         row.appendChild(bookCell);
         table.appendChild(row);
     }
+
+    Array.from(document.body.getElementsByClassName("inputModal")).forEach(element => element
+        .addEventListener( 'click', function ( event ) {
+        //console.log(event.srcElement.classList[0]);
+        if(event.srcElement.classList[0] == 'inputModal') {
+          checkboxChange(event.target);
+        };
+      })
+    );
 }
 
 function saveSelection() {
 
+    bannedBooks = bannedBooksModal;
+    let bannedBooksTemp = [];
+
+    
+    bannedBooksModal.forEach(element => {
+        //console.log(element);
+        bannedBooksTemp.push(element.replace(/ /g, ''));
+    
+        //The problem here is that the allQuotesFiltered is set each iteration to this single filter, overwriting the
+        //effects of the last iteration.
+    });
+    console.log(`Banned Books Temp: ${bannedBooksTemp}`);
+    console.log(`Quote: ${quotes[0].book.replace(/ /g, '')} In banedBooksTemp: ${bannedBooksTemp.includes(quotes[0].book.replace(/ /g, ''))}`)
+    quotesFiltered = quotes.filter(function(obj) {
+
+        //console.log(`Object.book.trim(): "${obj.book.replace(/ /g, '')}"  element: "${element.replace(/ /g, '')}"   Comparison: ${obj.book.replace(/ /g, '') === element.replace(/ /g, '')}`);
+        
+        return bannedBooksTemp.includes(obj.book.replace(/ /g, ''));
+    });
+        
+    
+    modal.style.display = "none";
+    //console.log(quotesFiltered);
+    quoteGen();
+    //console.log(mainChunks);
+    //console.log(Object.fromEntries(mainChunks));
 }
 
 function cancelSelection() {
     modal.style.display = "none";
-    allQuotes = [];
+    console.log(bannedBooksModal);
+    bannedBooksModal = bannedBooks;
+    quotes = [];
+};
+
+function selectAll() {
+    Array.from(document.body.getElementsByClassName("inputModal")).forEach(function(element) {
+        
+        element.checked = 1;
+        let book = Array.from(
+            document.body.getElementsByClassName(element.classList[element.classList.length-1]))[2]
+            .innerText
+            .replace(/ /g, '');
+    
+        //console.log(book);
+
+        if(bannedBooksModal.includes(book)) {console.log(`List already includes this book! ${bannedBooksModal}`);console.log(bannedBooksModal);return;   }
+        else {bannedBooksModal.push(book); console.log(`Book added to list! ${bannedBooksModal}`);console.log(bannedBooksModal);}
+    });
+    console.log(bannedBooksModal);
+}
+
+function deselectAll() {
+    Array.from(document.body.getElementsByClassName("inputModal")).forEach(function(element) {
+        
+        element.checked = 0;
+        let book = Array.from(
+            document.body.getElementsByClassName(element.classList[element.classList.length-1]))[2]
+            .innerText
+            .replace(/ /g, '');
+    
+        //console.log(book);
+
+        if(bannedBooksModal.includes(book)) {bannedBooksModal.splice(bannedBooksModal.indexOf(book), 1); 
+            console.log(`Book removed! ${bannedBooksModal}`); console.log(bannedBooksModal); console.log(bannedBooksModal);}
+        else {console.log(`Book not in list! ${bannedBooksModal}`); console.log(bannedBooksModal); return; }
+    });
+    console.log(bannedBooksModal);
 }
 
 readTextFile("http://127.0.0.1:5501/allClippings.txt");
+
+
+//IDEAS
+
+//Save user's filtered list to cache.
+
+//Use this: 'Object.fromEntries(mainChunks)' to simplify the initial parsing process.
