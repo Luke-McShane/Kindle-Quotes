@@ -13,6 +13,8 @@ let bannedBooksModal = []
 let quotes = [];
 let quotesFiltered = [];
 let chunkedText;
+let book = "";
+let author = "";
 
 let getFontSize = (textLength) => {
 

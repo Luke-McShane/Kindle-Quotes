@@ -1,28 +1,107 @@
 header {
     font-family: 'Bad Script';
-    font-size: 1.5rem;
+    font-size: 2vw;
     text-align: center;
 }
 
 #container {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
 }
 
 #textDiv {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 50%;
-    flex-wrap: wrap;
-    flex-direction: column;
 }
 
-#quote {
+#buttonDivLanding {
+    display: flex;
+    /* position: sticky;  */
+    /* top: 50%; */
+    /* width: 100% auto; */
+    /* transform: translate(0%, 0%); */
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+} 
+
+#absoluteButtonsDiv {
+    position: fixed;
+    width: 5em;
+    top: 20%;
+    left: 5%;
+}
+
+#buttonDivModal {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
+}
+
+#quoteGen {
+    line-height: 8vh;
+    width: 10vw;
+    height: 8vw;
+    font-size: 2vw;
+}
+
+#bookSelect {
+    line-height: 8vh;
+    width: 10vw;
+    height: 8vw;
+    font-size: 2vw;
+}
+
+@media only screen 
+    and (max-width: 768px) 
+    and (min-width: 425px) {
+    #quoteGen {
+        line-height: 5vh;
+        text-align: center;
+        width: 20vw;
+        height: 10vw;
+        font-size: 3vw;
+    }
+}
+
+@media only screen 
+    and (max-width: 768px)
+    and (min-width: 425px) {
+    #bookSelect {
+        line-height: 5vh;
+        width: 20vw;
+        height: 10vw;
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #quoteGen {
+        line-height: 3vh;
+        text-align: center;
+        width: 20vw;
+        height: 10vw;
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #bookSelect {
+        line-height: 3vh;
+        width: 20vw;
+        height: 10vw;
+        font-size: 3vw;
+    }
+}
+
+  #quote {
     height: 8em;
     background-color: brown;
     height: fit-content;
@@ -38,16 +117,9 @@ header {
     background-color: cornflowerblue;
 }
 
-.buttonDiv {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;
-}
-
 button {
     display: inline-block;
-    margin: 0em 2em;
+    margin: 2em 2em;
 
 	background-color: #f5f5f5;
 	background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
@@ -90,6 +162,10 @@ button:hover {
 }
 
 #modalButtonDiv {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    align-items: center;
     height: 15%;
     font-family: 'Google Sans',Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
