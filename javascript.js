@@ -16,17 +16,7 @@ let chunkedText;
 let book = "";
 let author = "";
 
-let getFontSize = (textLength) => {
 
-    let textSize = 1.5;
-    const maxLen = 325;
-    const maxSize = 1.5;
-
-    if (textLength < 325) return `${textSize}vw`;
-    textSize = (maxLen/textLength) * maxSize;
-    if (textSize < 1) textSize = 1;
-    return `${textSize}em`
-  }
 
 function readTextFile(file){
 
@@ -87,10 +77,12 @@ function quoteGen() {
     let quote = document.getElementById("quote");
 
     //console.log(quotesFiltered);
-    quote.textContent = quotesFiltered[currentQuote].quote;
-    quote.style.fontSize = getFontSize(quote.textContent.length);
-    document.getElementById("author").textContent = quotesFiltered[currentQuote].author;
-    document.getElementById("book").textContent = quotesFiltered[currentQuote].book;
+    quote.textContent = `"${quotesFiltered[currentQuote].quote}"`;
+    //quote.style.fontSize = getFontSize(quote.textContent.length);
+    // quote.style.fontSize = "2em";
+    document.getElementById("authorBook").textContent = quotesFiltered[currentQuote].author +
+            ": " + quotesFiltered[currentQuote].book;
+    
 }
 
 function populateModal() {
@@ -251,6 +243,18 @@ function deselectAll() {
 
 readTextFile("http://127.0.0.1:5501/allClippings.txt");
 
+
+// let getFontSize = (textLength) => {
+
+    //     let textSize = 1.5;
+    //     const maxLen = 325;
+    //     const maxSize = 1.5;
+    
+    //     if (textLength < 325) return `${textSize}vw`;
+    //     textSize = (maxLen/textLength) * maxSize;
+    //     if (textSize < 1) textSize = 1;
+    //     return `${textSize}em`
+    //   }
 
 //IDEAS
 

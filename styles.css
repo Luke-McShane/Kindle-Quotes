@@ -1,7 +1,32 @@
+@import url(//db.onlinewebfonts.com/c/695c262bacc7d6849ba6f9403d34bf56?family=GT+Sectra+Fine+Book);
+@font-face {font-family: "GT Sectra Fine Book";
+    src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot"); 
+    src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot?#iefix") 
+    format("embedded-opentype"), 
+    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff2") 
+    format("woff2"), 
+    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff") 
+    format("woff"), 
+    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.ttf") 
+    format("truetype"), 
+    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.svg#GT Sectra Fine Book") 
+    format("svg"); }
+
+html {
+    overflow-y: scroll;
+}
+
 header {
-    font-family: 'Bad Script';
+    /* font-family: 'Bad Script'; */
+    font-family: 'Libre Baskerville', serif;
+    color: ivory;
+    font-style: italic;
     font-size: 2vw;
     text-align: center;
+}
+
+body {
+    background-color: #2b2b2b;
 }
 
 #container {
@@ -16,7 +41,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     width: 50%;
 }
 
@@ -45,18 +70,60 @@ header {
     align-items: center;
 }
 
+#authorBook {
+    height: 2em;
+    color: ivory;
+    background-color: #2b2b2b;
+    font-family: "GT Sectra Fine Book", serif;
+    /* font-size: 2.5rem; */
+    font-size: 3.5vw;
+    text-align: left;
+}
+
+#quote {
+    width: 100%;
+    color: ivory;
+    background-color: #2b2b2b;
+    font-family: 'Lora', serif;
+    font-size: 2.5vw;
+    font-style: italic;
+    text-align: left;
+    line-height: 1.3em;
+}
+
 #quoteGen {
     line-height: 8vh;
-    width: 10vw;
-    height: 8vw;
+    width: 12vw;
+    height: 10vw;
     font-size: 2vw;
+    margin: 0.25em 2em 1.5em 2em;
+    font-family: 'Lora', serif;
+    /* font-size: 1.5em; */
+    font-size: 5vh;
+    font-weight: bold;
+    background-color: #2b2b2b;
+    color: ivory;
+    border: 3px solid ivory;
+    border-radius: 1em;
+    /* padding: 15px; */
+    
+
 }
 
 #bookSelect {
     line-height: 8vh;
-    width: 10vw;
-    height: 8vw;
+    width: 12vw;
+    height: 10vw;
     font-size: 2vw;
+    margin: 1.5em 2em;
+    font-family: 'Lora', serif;
+    font-size: 5vh;
+    font-weight: bold;
+    background-color: #2b2b2b;
+    color: ivory;
+    border: 3px solid ivory;
+    border-radius: 1em;
+    /* padding: 15px; */
 }
 
 @media only screen 
@@ -101,25 +168,9 @@ header {
     }
 }
 
-  #quote {
-    height: 8em;
-    background-color: brown;
-    height: fit-content;
-}
-
-#author {
-    height: 2em;
-    background-color: gold;
-}
-
-#book {
-    height: 2em;
-    background-color: cornflowerblue;
-}
-
-button {
+/* button {
     display: inline-block;
-    margin: 2em 2em;
+        margin: 2em 2em;
 
 	background-color: #f5f5f5;
 	background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
@@ -159,7 +210,7 @@ button:hover {
 	-webkit-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
 	-moz-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
 	box-shadow: 0px 1px 1px rgba(0,0,0,.1);
-}
+} */
 
 #modalButtonDiv {
     display: flex;
@@ -218,7 +269,7 @@ button:hover {
   }
   
   /* Modal Content/Box */
-  .modal-content {
+.modal-content {
     background-color: #fefefe;
     margin: 0.5em 2em; /* 15% from the top and centered */
     /* overflow: auto; */
