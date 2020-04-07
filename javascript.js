@@ -10,6 +10,7 @@ document.getElementById("buttonDeselectAll").addEventListener("click", deselectA
 let modal = document.getElementsByClassName("modal")[0];
 let allowedBooks = [];
 let allowedBooksModal = []
+let allowedBooksTemp = [];
 let quotes = [];
 let quotesFiltered = [];
 let chunkedText;
@@ -59,12 +60,11 @@ function parseText(text) {
             chunkedText[i][0][1] = `${chunkedText[i][0][1][1]} ${chunkedText[i][0][1][0]}`;
 
         // Else we simply remove the closing bracket from the string.
-        } else {console.log(chunkedText[i][0][1].trim().replace(')', ''));
+        } else {
             chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].length-2);}
 
         quotes.push({"author": chunkedText[i][0][1], "book": chunkedText[i][0][0], "quote": chunkedText[i][2]})
         quotesFiltered.push({"author": chunkedText[i][0][1], "book": chunkedText[i][0][0], "quote": chunkedText[i][2]})
-
     }   
 
     quoteGen();
@@ -74,7 +74,7 @@ function parseText(text) {
 function quoteGen() {
     let currentQuote = Math.floor(Math.random() * quotesFiltered.length);
     let quote = document.getElementById("quote");
-    console.log(quotesFiltered);
+    console.log(`quotesFiltered.length: ${quotesFiltered.length}`)
     let quoteText = quotesFiltered[currentQuote].quote;
     let firstChar = quoteText[0];
     let lastChar = quoteText[quotesFiltered[currentQuote].quote.length-2]
@@ -97,48 +97,28 @@ function populateModal() {
     let textDiv = document.getElementById("modalTextDiv");
 }
 
-function checkboxChange(checkboxElement) {
-
-    let thisArray = document.getElementsByClassName(checkboxElement.classList[1]);
-    let book = thisArray[2].innerText.replace(/ /g, '');
-
-    if(!thisArray[0].checked) {
-        if(allowedBooksModal.includes(book)) {
-            console.log(`Unchecked...   Book: ${book} allowedBooksModal: ${allowedBooksModal} index: ${allowedBooksModal.indexOf(book)}`);
-            allowedBooksModal.splice(allowedBooksModal.indexOf(book), 1);
-        }
-    } 
-    else if (thisArray[0].checked && !allowedBooksModal.includes(book)) {
-        allowedBooksModal.push(book);
-        console.log(`Checked...   Book: ${book} allowedBooksModal: ${allowedBooksModal}`);
-    }
-
-}
-
 function bookSelect () {
-
+    //console.log(`allowedBooks BEFORE: ${allowedBooks}`);
     modal.style.display = "flex";
-    allowedBooksModal = allowedBooks;
     let uniqueBooks = Array.from(new Set(quotes.map(item => item.book)))
         .map(book => {
-            allowedBooks
+            if(!allowedBooksModal.includes(book.replace(/ /g, '')) && allowedBooks.includes(book.replace(/ /g, ''))) allowedBooks.push(book.replace(/ /g, ''));
             return {
                 author: quotes.find(item => item.book == book).author,
                 book: book
             };
         });
-
+    //console.log(`allowedBooks AFTER: ${allowedBooks}`);
+    allowedBooksModal = allowedBooks.slice(0);
     tableGen(uniqueBooks.length, uniqueBooks);
     
 }
 
 function tableGen(length, uniqueBooks) {
-    console.log("WAKA");
-    let table = document.getElementById('modalTable');
     
     let numRows = Array.from(document.getElementsByClassName('inputModal')).length;
-    console.log(numRows);
     if (numRows > 0) return;
+    let table = document.getElementById('modalTable');
     
     for(let i = 0; i < length; i++) {
         let row = document.createElement("tr");
@@ -160,6 +140,8 @@ function tableGen(length, uniqueBooks) {
         
         authorCell.innerText = uniqueBooks[i].author;
         bookCell.innerText = uniqueBooks[i].book;   
+
+        allowedBooksModal.push(uniqueBooks[i].book.replace(/ /g, ''));
         
         checkboxCell.appendChild(input);
         row.appendChild(checkboxCell);
@@ -168,9 +150,10 @@ function tableGen(length, uniqueBooks) {
         table.appendChild(row);
     }
 
+    allowedBooks = allowedBooksModal.slice(0);
+
     Array.from(document.body.getElementsByClassName("inputModal")).forEach(element => element
         .addEventListener( 'click', function ( event ) {
-        //console.log(event.srcElement.classList[0]);
         if(event.srcElement.classList[0] == 'inputModal') {
           checkboxChange(event.target);
         };
@@ -178,71 +161,74 @@ function tableGen(length, uniqueBooks) {
     );
 }
 
+function checkboxChange(checkboxElement) {
+    let thisArray = document.getElementsByClassName(checkboxElement.classList[1]);
+    let book = thisArray[2].innerText.replace(/ /g, '');
+    if(!thisArray[0].checked) {
+        if(allowedBooksModal.includes(book)) {
+            allowedBooksModal.splice(allowedBooksModal.indexOf(book), 1);
+        }
+    } 
+    else if (thisArray[0].checked && !allowedBooksModal.includes(book)) {
+        allowedBooksModal.push(book);
+    }
+}
+
 function saveSelection() {
     if (allowedBooksModal.length === 0) {
         alert("Please select at least one book.")
     } else {
-        console.log(`Saved: ${allowedBooksModal}`);
-        allowedBooks = allowedBooksModal;
-        let allowedBooksTemp = [];
+        //console.log(`on save before: ${allowedBooks}`);
+        allowedBooks = allowedBooksModal.slice(0);
+        //console.log(`on save after: ${allowedBooks}`);
+        allowedBooksTemp = [];
 
         allowedBooksModal.forEach(element => {
-            //console.log(element);
             allowedBooksTemp.push(element.replace(/ /g, ''));
         });
-        //console.log(`allowed Books Temp: ${allowedBooksTemp}`);
-        //console.log(`Quote: ${quotes[0].book.replace(/ /g, '')} In banedBooksTemp: ${allowedBooksTemp.includes(quotes[0].book.replace(/ /g, ''))}`)
+        //console.log(`allowedBooksTemp: ${allowedBooksTemp}`);
+        //console.log(quotes);
         quotesFiltered = quotes.filter(function(obj) {
 
-            //console.log(`Object.book.trim(): "${obj.book.replace(/ /g, '')}"  element: "${element.replace(/ /g, '')}"   Comparison: ${obj.book.replace(/ /g, '') === element.replace(/ /g, '')}`);
-            
+            //console.log(`obj.book: ${obj.book.replace(/ /g, '')}`)
             return allowedBooksTemp.includes(obj.book.replace(/ /g, ''));
         });
-            
-        
+        //console.log(quotes);
         modal.style.display = "none";
-        //console.log(quotesFiltered);
         quoteGen();
-        //console.log(mainChunks);
-        //console.log(Object.fromEntries(mainChunks));
     }
 }
 
 function cancelSelection() {
     modal.style.display = "none";
-    console.log(`before process: ${allowedBooks}`);    
-        allowedBooksModal = allowedBooks;
-    let allowedBooksTemp = [];
-    allowedBooksModal.forEach(element => {
-        allowedBooksTemp.push(element.replace(/ /g, ''));
-    });
-    //console.log(allowedBooksTemp);
+    //console.log(`allowedBooks: ${allowedBooks}`);
+    allowedBooksModal = allowedBooks.slice(0);
+    //console.log(`allowedBooksModal on cancel: ${allowedBooksModal}`);
+    allowedBooksTemp = [];
+    // allowedBooksModal.forEach(element => {
+    //     allowedBooksTemp.push(element.replace(/ /g, ''));
+    // });
+    allowedBooksTemp = allowedBooks.slice(0);
+    //console.log(`allowedBooksTemp on cancel: ${allowedBooksTemp}`)
     Array.from(document.body.getElementsByClassName("inputModal")).forEach(element => {
         let tableRow = document.getElementsByClassName(element.classList[1]);
-        //console.log(tableRow)
         let book = tableRow[2].innerText.replace(/ /g, '');
 
-        // if (element.checked && !allowedBooksTemp.includes(book)) {
-        //     element.checked = 0;
-        // } else if (!element.checked && allowedBooksTemp.includes(book)) element.checked = 1;
+        if (element.checked && !allowedBooksTemp.includes(book)) {
+            element.checked = 0;
+        } else if (!element.checked && allowedBooksTemp.includes(book)) element.checked = 1;
 
-        //console.log(`allowedBooks: ${allowedBooks} book: ${book}`);
 
-        // if(!thisArray[0].checked) {
-        //     if(allowedBooksModal.includes(book)) {
-        //         console.log(`Unchecked...   Book: ${book} allowedBooksModal: ${allowedBooksModal} index: ${allowedBooksModal.indexOf(book)}`);
-        //         allowedBooksModal.splice(allowedBooksModal.indexOf(book), 1);
-        //     }
-        // } 
-        // else if (thisArray[0].checked && !allowedBooksModal.includes(book)) {
-        //     allowedBooksModal.push(book);
-        //     console.log(`Checked...   Book: ${book} allowedBooksModal: ${allowedBooksModal}`);
-        // }   
+        if(!element.checked && allowedBooksModal.includes(book)) {
+            allowedBooksModal.splice(allowedBooksModal.indexOf(book), 1);
+        } 
+        else if (element.checked && !allowedBooksModal.includes(book)) {
+            allowedBooksModal.push(book);
+        }   
     });
-    console.log(`After process: ${allowedBooks}`);
-    // console.log(quotesFiltered);
-    // console.log();
-    quotes = [];
+    //console.log(`allowedBooks: ${allowedBooks}`);
+    //quotes = [];
+    quoteGen();
 };
 
 function selectAll() {
@@ -254,15 +240,14 @@ function selectAll() {
             .innerText
             .replace(/ /g, '');
     
-        //console.log(book);
 
-        if(allowedBooksModal.includes(book)) {console.log(`List already includes this book! ${allowedBooksModal}`);console.log(allowedBooksModal);return;   }
-        else {allowedBooksModal.push(book); console.log(`Book added to list! ${allowedBooksModal}`);console.log(allowedBooksModal);}
+        if(allowedBooksModal.includes(book)) return;   
+        else {allowedBooksModal.push(book);}
     });
-    console.log(allowedBooksModal);
 }
 
 function deselectAll() {
+    
     Array.from(document.body.getElementsByClassName("inputModal")).forEach(function(element) {
         
         element.checked = 0;
@@ -271,13 +256,12 @@ function deselectAll() {
             .innerText
             .replace(/ /g, '');
     
-        //console.log(book);
 
-        if(allowedBooksModal.includes(book)) {allowedBooksModal.splice(allowedBooksModal.indexOf(book), 1);}
-            //console.log(`Book removed! ${allowedBooksModal}`); console.log(allowedBooksModal); console.log(allowedBooksModal);}
-        else { return; } //console.log(`Book not in list! ${allowedBooksModal}`); console.log(allowedBooksModal);
+        if(allowedBooksModal.includes(book)) {allowedBooksModal.splice(allowedBooksModal.indexOf(book), 1);
+        }
+        
+        else { return; } 
     });
-    console.log(allowedBooksModal);
 }
 
 readTextFile("http://127.0.0.1:5501/allClippings.txt");
@@ -310,3 +294,5 @@ readTextFile("http://127.0.0.1:5501/allClippings.txt");
 // this list after Save is clicked.
 
 //Add document.onReady JS equivalent to generate modal so that it isn't regerated each time you click the modal.
+
+//TIP: In JS, saying a = b doesn't mean that a will simply copy the contents of b, it means it will point to the same variable!
