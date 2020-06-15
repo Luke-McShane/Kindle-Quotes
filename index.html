@@ -15,16 +15,20 @@
         <link href="//db.onlinewebfonts.com/c/695c262bacc7d6849ba6f9403d34bf56?family=GT+Sectra+Fine+Book" rel="stylesheet" type="text/css"/>  
     </head>
     <body>
-        <header><h1>My Kindle Quotes</h1></header>
+        <!-- <header><h1>My Kindle Quotes</h1></header> -->
         
         <div id="container">
             <div id="buttonDivLanding">
                 <div id="absoluteButtonsDiv">
-                    <button id="quoteGen">Generate Quote</button>
-                    <button id="bookSelect">Select Books</button>
+                    <input type="file" accept=".txt" name="file" id="getPath">
+                    <input type="button" id="filePath" class="btn" value="Link Kindle">
+                    <!-- <button id="filePath" class="btn">Link Quote</button> -->
+                    <button id="quoteGen" class="btn">Generate Quote</button>
+                    <button id="bookSelect" class="btn">Select Books</button>
                 </div>
             </div>
             <div id="textDiv">
+                <header><h1>My Kindle Quotes</h1></header>
                 <h3 id="authorBook">Arthur Schopenhauer</h3>
                 <!-- <h3 id="book"></h3> -->
                 <h2 id="quote">

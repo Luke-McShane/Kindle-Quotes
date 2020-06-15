@@ -1,211 +1,190 @@
 @import url(//db.onlinewebfonts.com/c/695c262bacc7d6849ba6f9403d34bf56?family=GT+Sectra+Fine+Book);
-@font-face {font-family: "GT Sectra Fine Book";
-    src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot"); 
-    src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot?#iefix") 
-    format("embedded-opentype"), 
-    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff2") 
-    format("woff2"), 
-    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff") 
-    format("woff"), 
-    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.ttf") 
-    format("truetype"), 
-    url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.svg#GT Sectra Fine Book") 
-    format("svg"); }
+@font-face {
+	font-family: "GT Sectra Fine Book";
+	src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot");
+	src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot?#iefix") format("embedded-opentype"),
+		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff2") format("woff2"),
+		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff") format("woff"),
+		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.ttf") format("truetype"),
+		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.svg#GT Sectra Fine Book") format("svg");
+}
 
 html {
-    overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 header {
-    font-family: 'Libre Baskerville', serif;
-    color: ivory;
-    font-style: italic;
-    font-size: 2vw;
-    text-align: center;
+	font-family: 'Libre Baskerville', serif;
+	color: ivory;
+	font-style: italic;
+	font-size: 2vw;
+	text-align: left;
 }
 
 body {
-    background-color: #2b2b2b;
+	background-color: #2b2b2b;
 }
 
 #container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: stretch;
 }
 
 #textDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* align-items: center; */
-    width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	/* align-items: center; */
+	width: 50%;
 }
 
 #buttonDivLanding {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-} 
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 
 #absoluteButtonsDiv {
-    position: fixed;
-    width: 5em;
-    top: 20%;
-    left: 5%;
+	position: fixed;
+	width: 5em;
+	top: 7%;
+	left: 5%;
 }
 
 #buttonDivModal {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 }
 
 #authorBook {
-    height: 2.5em;
-    color: ivory;
-    background-color: #2b2b2b;
-    font-family: "GT Sectra Fine Book", serif;
-    font-size: 3.5vw;
-    text-align: left;
+	height: 2.5em;
+	color: ivory;
+	background-color: #2b2b2b;
+	font-family: "GT Sectra Fine Book", serif;
+	font-size: 3.5vw;
+	text-align: left;
 }
 
 #quote {
-    width: 100%;
-    color: ivory;
-    background-color: #2b2b2b;
-    font-family: 'Lora', serif;
-    font-size: 2.5vw;
-    font-style: italic;
-    text-align: left;
-    line-height: 1.3em;
+	width: 100%;
+	color: ivory;
+	background-color: #2b2b2b;
+	font-family: 'Lora', serif;
+	font-size: 2.5vw;
+	font-style: italic;
+	text-align: left;
+	line-height: 1.3em;
 }
 
-#quoteGen {
-    line-height: 3vw;
-    width: 15vw;
-    height: 10vw;
-    margin: 0.25em 2em 1.5em 2em;
-    font-family: 'Lora', serif;
-    font-size:  calc(4px + 2vw);
-    font-weight: bold;
-    background-color: #2b2b2b;
-    color: ivory;
-    border: 3px solid ivory;
-    border-radius: 1em; 
+.btn {
+	line-height: 3vw;
+	width: 15vw;
+	height: 10vw;
+	margin: 0.25em 2em 1.5em 2em;
+	font-family: 'Lora', serif;
+	font-size: calc(4px + 2vw);
+	font-weight: bold;
+	background-color: #2b2b2b;
+	color: ivory;
+	border: 3px solid ivory;
+	border-radius: 1em;
 }
 
-#bookSelect {
-    line-height: 3vw;
-    width: 15vw;
-    height: 10vw;
-    margin: 1.5em 2em;
-    font-family: 'Lora', serif;
-    font-size: calc(4px + 2vw);
-    font-weight: bold;
-    background-color: #2b2b2b;
-    color: ivory;
-    border: 3px solid ivory;
-    border-radius: 1em;
+#getPath {
+	display: none;
 }
 
 /* Resizing both buttons as the user collapses and expands the screen */
-@media only screen 
-    and (max-width: 1500px) 
-    and (min-width: 768px) {
-    #quoteGen {
-        line-height: 3vw;
-        text-align: center;
-        width: 15vw;
-        height: 10vw;
-        font-size: calc(4px + 2vw);
-    }
+@media only screen and (max-width: 1500px) and (min-width: 768px) {
+	#quoteGen {
+		line-height: 3vw;
+		text-align: center;
+		width: 15vw;
+		height: 10vw;
+		font-size: calc(4px + 2vw);
+	}
 }
 
-@media only screen 
-    and (max-width: 1500px)
-    and (min-width: 768px) {
-    #bookSelect {
-        line-height: 3vw;
-        width: 15vw;
-        height: 10vw;
-        font-size: calc(4px + 2vw);
-    }
+@media only screen and (max-width: 1500px) and (min-width: 768px) {
+	#bookSelect {
+		line-height: 3vw;
+		width: 15vw;
+		height: 10vw;
+		font-size: calc(4px + 2vw);
+	}
 }
 
-@media only screen 
-    and (max-width: 768px) 
-    and (min-width: 425px) {
-    #quoteGen {
-        line-height: 3vw;
-        text-align: center;
-        width: 20vw;
-        height: 10vw;
-        font-size: 3vw;
-    }
+@media only screen and (max-width: 768px) and (min-width: 425px) {
+	#quoteGen {
+		line-height: 3vw;
+		text-align: center;
+		width: 20vw;
+		height: 10vw;
+		font-size: 3vw;
+	}
 }
 
-@media only screen 
-    and (max-width: 768px)
-    and (min-width: 425px) {
-    #bookSelect {
-        line-height: 3vw;
-        width: 20vw;
-        height: 10vw;
-        font-size: 3vw;
-    }
+@media only screen and (max-width: 768px) and (min-width: 425px) {
+	#bookSelect {
+		line-height: 3vw;
+		width: 20vw;
+		height: 10vw;
+		font-size: 3vw;
+	}
 }
 
 @media only screen and (max-width: 425px) {
-    #quoteGen {
-        line-height: 3vw;
-        text-align: center;
-        width: 20vw;
-        height: 10vw;
-        font-size: 3vw;
-    }
+	#quoteGen {
+		line-height: 3vw;
+		text-align: center;
+		width: 20vw;
+		height: 10vw;
+		font-size: 3vw;
+	}
 }
 
 @media only screen and (max-width: 425px) {
-    #bookSelect {
-        line-height: 3vw;
-        width: 20vw;
-        height: 10vw;
-        font-size: 3vw;
-    }
+	#bookSelect {
+		line-height: 3vw;
+		width: 20vw;
+		height: 10vw;
+		font-size: 3vw;
+	}
 }
 
 /* The entire modal */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
-  
+
 /* The content box that will host both the button div and the table */
 .modal-content {
-    background-color:   #2b2b2b;
-    margin: 0.5em 2em; 
-    height: 80%;
-    padding: 2em;
-    border: 10px solid ivory;
-    width: 80%; 
+	background-color: #2b2b2b;
+	margin: 0.5em 2em;
+	height: 80%;
+	padding: 2em;
+	border: 10px solid ivory;
+	width: 80%;
 }
 
 #modalText {
-    color: ivory;
-    text-decoration: none;
+	color: ivory;
+	text-decoration: none;
 }
 
 /* #modalElementDiv {
@@ -217,52 +196,53 @@ body {
 } */
 
 #modalButtonDiv {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: center;
-    height: 15%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 15%;
 }
 
 .modalButtons {
-    font-family: 'GT Sectra Fine Book', serif;
-    font-size: calc(2px + 1.5vw);
-    color: ivory;
-    background-color: #2b2b2b;
-    border: 2px solid ivory;
-    border-radius: 4px;
-    margin: 0em 2em;
-    padding: 0.5em;
+	font-family: 'GT Sectra Fine Book', serif;
+	font-size: calc(2px + 1.5vw);
+	color: ivory;
+	background-color: #2b2b2b;
+	border: 2px solid ivory;
+	border-radius: 4px;
+	margin: 0em 2em;
+	padding: 0.5em;
 }
 
-table, th, td { 
-    border: 1px solid ivory;
-    padding: 0.5em;
+table,
+th,
+td {
+	border: 1px solid ivory;
+	padding: 0.5em;
 }
 
 table {
-    width: 100%; 
-    color: ivory;
+	width: 100%;
+	color: ivory;
 }
 
 td {
-    height: 1em;
-    font-family: 'Lora', serif;
-    font-style: italic;
+	height: 1em;
+	font-family: 'Lora', serif;
+	font-style: italic;
 }
 
-th { 
-    text-align: left;
-    font-family: "GT Sectra Fine Book", serif;
-    font-weight: bold;
+th {
+	text-align: left;
+	font-family: "GT Sectra Fine Book", serif;
+	font-weight: bold;
 }
-
 
 #innerModalDiv {
-    display: flex;
-    flex-direction: row; 
-    justify-content: center;
-    align-items: flex-start;
-    height: 90%; 
-    overflow: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	height: 90%;
+	overflow: auto;
 }
