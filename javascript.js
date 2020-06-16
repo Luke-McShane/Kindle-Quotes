@@ -1,11 +1,4 @@
 // Add event listeners to the buttons contained on the main page and within the modal
-document.getElementById('quoteGen').addEventListener('click', quoteGen);
-document.getElementById('bookSelect').addEventListener('click', bookSelect);
-document.getElementById('buttonSave').addEventListener('click', saveSelection);
-document.getElementById('buttonCancel').addEventListener('click', cancelSelection);
-document.getElementById('buttonSelectAll').addEventListener('click', selectAll);
-document.getElementById('buttonDeselectAll').addEventListener('click', deselectAll);
-
 let modal = document.getElementsByClassName('modal')[0];
 let allowedBooks = [];
 let allowedBooksModal = [];
@@ -16,26 +9,29 @@ let book = '';
 let author = '';
 
 //Create a reqest to receive textual data
-function readTextFile(file) {
-	let rawFile = new XMLHttpRequest();
-
+function readTextFile(data) {
+	// Code immediately below is for when we are passing the string of text, already, extracted, into this method
+	// console.log(`From within readTextFile: ${data}`);
+	//
+	//
+	// let rawFile = new XMLHttpRequest();
 	// Code winthin this comment and the one below is to be used for when we get .txt from file explorer
-	const fileBtn = document.querySelector('#getPath');
-	let path = fileBtn.value;
-	console.log(`path: ${path}`);
-	rawFile.open('GET', path, false);
-	rawFile.onreadystatechange = function() {
-		if (rawFile.readyState === 4) {
-			if (rawFile.status === 200 || rawFile.status == 0) {
-				let allText = rawFile.responseText;
-				console.log(`allText: ${allText}`);
-				parseText(allText);
-			}
-		}
-	};
-	rawFile.send(null);
+	// const fileBtn = document.querySelector('#getPath');
+	// let path = fileBtn.value;
+	// console.log(`path: ${path}`);
+	// rawFile.open('GET', file, false);
+	// rawFile.onreadystatechange = function() {
+	// 	if (rawFile.readyState === 4) {
+	// 		if (rawFile.status === 200 || rawFile.status == 0) {
+	// 			let allText = rawFile.responseText;
+	// 			console.log(`allText: ${allText}`);
+	// 			parseText(allText);
+	// 		}
+	// 	}
+	// };
+	// rawFile.send(null);
 	// Between that comment and this
-
+	//
 	// rawFile.open('GET', file, false);
 	// rawFile.onreadystatechange = function() {
 	// 	if (rawFile.readyState === 4) {
@@ -241,17 +237,32 @@ function deselectAll() {
 	});
 }
 
-function start() {
-	const filePathBtn = document.querySelector('#filePath');
-	filePathBtn.addEventListener('click', () => document.querySelector('#getPath').click());
+function app() {
+	// Setup event listeners
+	document.getElementById('quoteGen').addEventListener('click', quoteGen);
+	document.getElementById('bookSelect').addEventListener('click', bookSelect);
+	document.getElementById('buttonSave').addEventListener('click', saveSelection);
+	document.getElementById('buttonCancel').addEventListener('click', cancelSelection);
+	document.getElementById('buttonSelectAll').addEventListener('click', selectAll);
+	document.getElementById('buttonDeselectAll').addEventListener('click', deselectAll);
+	document.querySelector('#linkKindle').addEventListener('click', () => document.querySelector('#getPath').click());
+	// Here we are setting an event listener for the getPath button to load the text data whenever the user selects
+	// a .txt file from the input="file" button
+	document.querySelector('#getPath').addEventListener('change', (event) => {
+		let data;
+		let input = event.target;
+		// Crete a FileReader object that will be used to house the file information
+		let reader = new FileReader();
+		// When the file has been loaded, pass the contained data to the parseText method
+		// This is an asynchronous method, meaning that it is ran whenever necessary, and the browser doesn't need to wait/freeze
+		// for the process to finish executing for the code below to run
+		reader.onload = () => parseText(reader.result);
+		// This allows us access to the file data outside of the object event
+		data = reader.readAsText(input.files[0]);
+	});
 }
 
-function gen() {
-	const genBtn = document.querySelector('#quoteGen');
-	genBtn.addEventListener('click', start);
-}
-
-gen();
+app();
 // readTextFile('http://127.0.0.1:5501/allClippings.txt');
 
 // let getFontSize = (textLength) => {

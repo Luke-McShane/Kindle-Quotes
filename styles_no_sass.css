@@ -1,28 +1,20 @@
-@import url(//db.onlinewebfonts.com/c/695c262bacc7d6849ba6f9403d34bf56?family=GT+Sectra+Fine+Book);
-@font-face {
-	font-family: "GT Sectra Fine Book";
-	src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot");
-	src: url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.eot?#iefix") format("embedded-opentype"),
-		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff2") format("woff2"),
-		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.woff") format("woff"),
-		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.ttf") format("truetype"),
-		url("//db.onlinewebfonts.com/t/695c262bacc7d6849ba6f9403d34bf56.svg#GT Sectra Fine Book") format("svg");
-}
-
-html {
-	overflow-y: scroll;
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 header {
 	font-family: 'Libre Baskerville', serif;
 	color: ivory;
-	font-style: italic;
+	/* font-style: italic; */
 	font-size: 2vw;
 	text-align: left;
 }
 
 body {
 	background-color: #2b2b2b;
+	overflow-y: scroll;
 }
 
 #container {
@@ -65,7 +57,9 @@ body {
 	height: 2.5em;
 	color: ivory;
 	background-color: #2b2b2b;
-	font-family: "GT Sectra Fine Book", serif;
+	/* font-family: "GT Sectra Fine Book", serif; */
+	font-family: "Libre Baskerville", serif;
+	font-style: italic;
 	font-size: 3.5vw;
 	text-align: left;
 }
@@ -187,14 +181,6 @@ body {
 	text-decoration: none;
 }
 
-/* #modalElementDiv {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-} */
-
 #modalButtonDiv {
 	display: flex;
 	flex-direction: row;
@@ -204,7 +190,7 @@ body {
 }
 
 .modalButtons {
-	font-family: 'GT Sectra Fine Book', serif;
+	font-family: 'Raleway', serif;
 	font-size: calc(2px + 1.5vw);
 	color: ivory;
 	background-color: #2b2b2b;
@@ -228,13 +214,13 @@ table {
 
 td {
 	height: 1em;
-	font-family: 'Lora', serif;
+	font-family: 'Raleway', serif;
 	font-style: italic;
 }
 
 th {
 	text-align: left;
-	font-family: "GT Sectra Fine Book", serif;
+	font-family: "Raleway", serif;
 	font-weight: bold;
 }
 
