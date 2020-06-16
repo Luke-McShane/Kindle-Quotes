@@ -1,5 +1,5 @@
 // Add event listeners to the buttons contained on the main page and within the modal
-let modal = document.getElementsByClassName('modal')[0];
+let modal = document.getElementById('modal');
 let allowedBooks = [];
 let allowedBooksModal = [];
 let quotes = [];
@@ -45,6 +45,7 @@ function readTextFile(data) {
 }
 
 function parseText(text) {
+	console.log(text);
 	chunkedText = text.split('==========');
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
@@ -80,7 +81,7 @@ function parseText(text) {
 
 function quoteGen() {
 	let currentQuote = Math.floor(Math.random() * quotesFiltered.length);
-	let quote = document.getElementById('quote');
+	let quote = document.getElementById('main-text-quote');
 	let quoteText = quotesFiltered[currentQuote].quote;
 	let firstChar = quoteText[0];
 	let lastChar = quoteText[quotesFiltered[currentQuote].quote.length - 2];
@@ -97,7 +98,7 @@ function quoteGen() {
 		quote.textContent = `${quote.textContent}.."`;
 	} else quote.textContent = `${quote.textContent}"`;
 
-	document.getElementById('authorBook').textContent =
+	document.getElementById('main-text-author').textContent =
 		quotesFiltered[currentQuote].author + ': ' + quotesFiltered[currentQuote].book;
 }
 
@@ -121,7 +122,7 @@ function bookSelect() {
 }
 
 function tableGen(length, uniqueBooks) {
-	let table = document.getElementById('modalTable');
+	let table = document.getElementById('table');
 
 	for (let i = 0; i < length; i++) {
 		let row = document.createElement('tr');
@@ -259,6 +260,7 @@ function app() {
 		reader.onload = () => parseText(reader.result);
 		// This allows us access to the file data outside of the object event
 		data = reader.readAsText(input.files[0]);
+		console.log(data);
 	});
 }
 

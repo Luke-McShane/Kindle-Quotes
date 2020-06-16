@@ -1,4 +1,263 @@
+/* The entire modal */
+#modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  /* The content box that will host both the button div and the table */
+}
+
+#modal-content {
+  margin: 0.5em 2em;
+  height: 80%;
+  padding: 2em;
+  border: 10px solid ivory;
+  width: 80%;
+}
+
+#modal-content-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  height: 90%;
+  overflow: auto;
+}
+
+#modal-content-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 15%;
+}
+
+#modal-content-buttons .modalButtons {
+  font-size: calc(2px + 1.5vw);
+  border: 2px solid ivory;
+  border-radius: 4px;
+  margin: 0em 2em;
+  padding: 0.5em;
+}
+
 * {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #2b2b2b;
+  color: ivory;
+  font-family: 'Raleway', serif;
+}
+
+html {
   overflow-y: scroll;
+}
+
+table,
+th,
+td {
+  border: 1px solid ivory;
+  padding: 0.5em;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  font-style: italic;
+}
+
+th {
+  text-align: left;
+  font-weight: bold;
+}
+
+#main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+
+#main-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+  margin: 3rem 2rem;
+}
+
+#main-text-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 4vw;
+  text-align: left;
+}
+
+#main-text-author {
+  height: 2.5em;
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+  font-size: 3.5vw;
+  text-align: left;
+}
+
+#main-text-quote {
+  font-family: 'Lora', serif;
+  font-size: 2.5vw;
+  font-style: italic;
+  text-align: left;
+  line-height: 1.3em;
+}
+
+#main-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 4rem;
+  position: fixed;
+  width: auto;
+  -webkit-transform: translate(-180%, 7%);
+          transform: translate(-180%, 7%);
+}
+
+#main-buttons #getPath {
+  display: none;
+}
+
+.btn {
+  line-height: 3vw;
+  width: 15vw;
+  height: 10vw;
+  margin: 0.25em 2em 1.5em 2em;
+  font-family: 'Lora', serif;
+  font-size: calc(4px + 2vw);
+  font-weight: 500;
+  background-color: #2b2b2b;
+  color: ivory;
+  border: 3px solid ivory;
+  border-radius: 1em;
+}
+
+/* Resizing both buttons as the user collapses and expands the screen */
+@media only screen and (max-width: 1500px) and (min-width: 768px) {
+  #quoteGen {
+    line-height: 3vw;
+    text-align: center;
+    width: 15vw;
+    height: 10vw;
+    font-size: calc(4px + 2vw);
+  }
+}
+
+@media only screen and (max-width: 1500px) and (min-width: 768px) {
+  #bookSelect {
+    line-height: 3vw;
+    width: 15vw;
+    height: 10vw;
+    font-size: calc(4px + 2vw);
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 425px) {
+  #quoteGen {
+    line-height: 3vw;
+    text-align: center;
+    width: 20vw;
+    height: 10vw;
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 425px) {
+  #bookSelect {
+    line-height: 3vw;
+    width: 20vw;
+    height: 10vw;
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #quoteGen {
+    line-height: 3vw;
+    text-align: center;
+    width: 20vw;
+    height: 10vw;
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #bookSelect {
+    line-height: 3vw;
+    width: 20vw;
+    height: 10vw;
+    font-size: 3vw;
+  }
 }
 /*# sourceMappingURL=style.css.map */
