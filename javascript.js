@@ -246,7 +246,11 @@ function app() {
 	document.getElementById('buttonCancel').addEventListener('click', cancelSelection);
 	document.getElementById('buttonSelectAll').addEventListener('click', selectAll);
 	document.getElementById('buttonDeselectAll').addEventListener('click', deselectAll);
-	document.querySelector('#linkKindle').addEventListener('click', () => document.querySelector('#getPath').click());
+	document
+		.querySelector('#linkKindle')
+		.addEventListener('click', () => document.querySelector('#getPath').click(), false);
+	// .stopPropogation() is used to prevent this child from inheriting the parent onclick event functionality
+	document.getElementById('toolTip').addEventListener('click', (e) => e.stopPropagation());
 	// Here we are setting an event listener for the getPath button to load the text data whenever the user selects
 	// a .txt file from the input="file" button
 	document.querySelector('#getPath').addEventListener('change', (event) => {
