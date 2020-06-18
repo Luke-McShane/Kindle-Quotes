@@ -73,7 +73,6 @@
 #modal-content-buttons .modalButtons {
   font-size: calc(2px + 1.5vw);
   border: 2px solid ivory;
-  border-radius: 4px;
   margin: 0em 2em;
   padding: 0.5em;
 }
@@ -278,6 +277,11 @@ th {
 @media only screen and (max-width: 500px) {
   #main-buttons {
     display: none;
+  }
+  #main-text {
+    width: 100%;
+    -webkit-transform: translateX(5%);
+            transform: translateX(5%);
   }
   #main-text-title {
     margin-bottom: 2rem;
