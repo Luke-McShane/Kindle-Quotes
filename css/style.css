@@ -275,16 +275,45 @@ th {
 }
 
 @media only screen and (max-width: 500px) {
+  #main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
   #main-buttons {
-    display: none;
+    margin: 1rem 0;
+    position: relative;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    left: 0;
+  }
+  #main-buttons .btn {
+    padding: 0.5rem 0rem;
+    margin: 0 0.5em;
+    line-height: 1.4rem;
+    width: 90px;
   }
   #main-text {
     width: 100%;
-    -webkit-transform: translateX(5%);
-            transform: translateX(5%);
-  }
-  #main-text-title {
-    margin-bottom: 2rem;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+    margin: 0;
+    padding: 2rem 1rem 0 1rem;
+    left: #main-text -title;
+    left-margin-bottom: 2rem;
   }
   #main-text-author {
     margin-bottom: 1rem;
