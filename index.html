@@ -15,27 +15,32 @@
     </head>
     <body>
         <div id="main">
-            <!-- <div id="main-mobile"> 
-                <ul id="main-mobile-menu">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div> -->
+            <div id="main-help"> 
+                <div id="main-help-overlay">
+                    <ul>
+                        <i class="fa fa-times fa-2x" id="close"></i>
+                        <li class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer via the USB port</li>
+                        <li class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on this webpage</li>
+                        <li class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on your Kindle USB Drive</li>
+                        <li class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</li>
+                    </ul>
+                </div>
+            </div>
             <div id="main-buttons">
-                <button id="bookSelect" class="btn">Select Books</button>
+                <input id="getPath" type="file" accept=".txt" name="file">
                 <button id="quoteGen" class="btn">Generate Quote</button>
-                    <input id="getPath" type="file" accept=".txt" name="file">
-                    <button id="linkKindle" class="btn">Link Kindle 
-                         <span id="help">(?)
-                            <div id="toolTip">
-                                <span class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer via the USB port</span>
-                                <span class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on this webpage</span>
-                                <span class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on your Kindle USB Drive</span>
-                                <span class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</span>
-                            </div>
-                        </span>
-                    </button>
+                <button id="bookSelect" class="btn">Select Books</button>
+                <button id="linkKindle" class="btn">Link Kindle 
+                        <span id="help">(?)
+                        <div id="toolTip">
+                            <span class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer via the USB port</span>
+                            <span class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on this webpage</span>
+                            <span class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on your Kindle USB Drive</span>
+                            <span class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</span>
+                        </div>
+                    </span>
+                </button>
+                <button id="helpBtn" class="btn">Help</button>
             </div>
             <div id="main-text">
                 <h1 id="main-text-title">My Kindle Quotes</h1>

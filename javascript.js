@@ -45,7 +45,7 @@ function readTextFile(data) {
 }
 
 function parseText(text) {
-	console.log(text);
+	// console.log(text);
 	chunkedText = text.split('==========');
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
@@ -70,7 +70,9 @@ function parseText(text) {
 
 			// Else we simply remove the closing bracket from the string.
 		} else {
-			chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].length - 2);
+			console.log(`Chunked text 1: START${chunkedText[i][0][1].trim()}`);
+			chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].trim().length - 1);
+			console.log(`Chunked text 2: START${chunkedText[i][0][1]}`);
 		}
 
 		quotes.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
@@ -238,6 +240,39 @@ function deselectAll() {
 	});
 }
 
+function showOverlay() {
+	const [ overlay, overlayInner, overlayInnerText ] = getOverlay();
+	const close = document.querySelector('#close');
+	overlay.style.visibility = 'visible';
+	overlayInner.style.transform = 'scale(1)';
+	overlayInner.style.transitionDuration = '400ms';
+	overlayInnerText.style.opacity = 1;
+	overlayInnerText.style.transition = 'opacity 400ms ease 400ms';
+	close.addEventListener('click', () => {
+		const [ overlay, overlayInner, overlayInnerText ] = getOverlay();
+		overlay.style.visibility = 'hidden';
+		overlayInner.style.transform = 'scale(0)';
+		overlayInnerText.style.opacity = 0;
+	});
+}
+
+function getOverlay() {
+	const overlay = document.querySelector('#main-help');
+	const overlayInner = document.querySelector('#main-help-overlay');
+	const overlayInnerText = document.querySelector('#main-help-overlay > ul');
+	return [ overlay, overlayInner, overlayInnerText ];
+}
+// function closeOverlay(...args) {
+// 	console.log(args);
+// 	if (args) {
+// 		[ overlay, overlayInner, overlayInnerText ] = args;
+// 		console.log(overlay);
+// 		overlay.style.visibility = 'invisible';
+// 		overlayInner.style.transform = 'scale(0)';
+// 		overlayInnerText.style.opacity = 0;
+// 	}
+// }
+
 function app() {
 	// Setup event listeners
 	document.getElementById('quoteGen').addEventListener('click', quoteGen);
@@ -266,6 +301,8 @@ function app() {
 		data = reader.readAsText(input.files[0]);
 		console.log(data);
 	});
+
+	document.querySelector('#helpBtn').addEventListener('click', showOverlay);
 }
 
 app();
