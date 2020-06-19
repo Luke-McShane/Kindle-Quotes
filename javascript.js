@@ -8,44 +8,8 @@ let chunkedText;
 let book = '';
 let author = '';
 
-//Create a reqest to receive textual data
-function readTextFile(data) {
-	// Code immediately below is for when we are passing the string of text, already, extracted, into this method
-	// console.log(`From within readTextFile: ${data}`);
-	//
-	//
-	// let rawFile = new XMLHttpRequest();
-	// Code winthin this comment and the one below is to be used for when we get .txt from file explorer
-	// const fileBtn = document.querySelector('#getPath');
-	// let path = fileBtn.value;
-	// console.log(`path: ${path}`);
-	// rawFile.open('GET', file, false);
-	// rawFile.onreadystatechange = function() {
-	// 	if (rawFile.readyState === 4) {
-	// 		if (rawFile.status === 200 || rawFile.status == 0) {
-	// 			let allText = rawFile.responseText;
-	// 			console.log(`allText: ${allText}`);
-	// 			parseText(allText);
-	// 		}
-	// 	}
-	// };
-	// rawFile.send(null);
-	// Between that comment and this
-	//
-	// rawFile.open('GET', file, false);
-	// rawFile.onreadystatechange = function() {
-	// 	if (rawFile.readyState === 4) {
-	// 		if (rawFile.status === 200 || rawFile.status == 0) {
-	// 			let allText = rawFile.responseText;
-	// 			parseText(allText);
-	// 		}
-	// 	}
-	// };
-	// rawFile.send(null);
-}
-
 function parseText(text) {
-	// console.log(text);
+	console.log(text);
 	chunkedText = text.split('==========');
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
@@ -256,27 +220,12 @@ function showOverlay() {
 	});
 }
 
-function onWindowResize() {
-	console.log(`Window Height: ${window.innerHeight}`);
-	console.log(`Window Width: ${window.innerWidth}`);
-}
-
 function getOverlay() {
 	const overlay = document.querySelector('#main-help');
 	const overlayInner = document.querySelector('#main-help-overlay');
 	const overlayInnerText = document.querySelector('#main-help-overlay > ul');
 	return [ overlay, overlayInner, overlayInnerText ];
 }
-// function closeOverlay(...args) {
-// 	console.log(args);
-// 	if (args) {
-// 		[ overlay, overlayInner, overlayInnerText ] = args;
-// 		console.log(overlay);
-// 		overlay.style.visibility = 'invisible';
-// 		overlayInner.style.transform = 'scale(0)';
-// 		overlayInnerText.style.opacity = 0;
-// 	}
-// }
 
 function app() {
 	// Setup event listeners
@@ -307,22 +256,25 @@ function app() {
 	});
 	window.onresize = onWindowResize;
 	document.querySelector('#helpBtn').addEventListener('click', showOverlay);
+	getDefaultClippings();
+}
+
+function getDefaultClippings() {
+	const rawFile = new XMLHttpRequest();
+	let allText;
+	rawFile.open('GET', 'My Clippings.txt', false);
+	rawFile.onreadystatechange = function() {
+		if (rawFile.readyState === 4) {
+			if (rawFile.status === 200 || rawFile.status == 0) {
+				allText = rawFile.responseText;
+				parseText(rawFile.responseText);
+			}
+		}
+	};
+	rawFile.send(null);
 }
 
 app();
-// readTextFile('http://127.0.0.1:5501/allClippings.txt');
-
-// let getFontSize = (textLength) => {
-
-//     let textSize = 1.5;
-//     const maxLen = 325;
-//     const maxSize = 1.5;
-
-//     if (textLength < 325) return `${textSize}vw`;
-//     textSize = (maxLen/textLength) * maxSize;
-//     if (textSize < 1) textSize = 1;
-//     return `${textSize}em`
-//   }
 
 //IDEAS
 
@@ -341,3 +293,5 @@ app();
 //Add document.onReady JS equivalent to generate modal so that it isn't regerated each time you click the modal.
 
 //TIP: In JS, saying a = b doesn't mean that a will simply copy the contents of b, it means it will point to the same variable!
+
+//Create a reqest to receive textual data
