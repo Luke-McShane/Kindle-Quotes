@@ -256,6 +256,11 @@ function showOverlay() {
 	});
 }
 
+function onWindowResize() {
+	console.log(`Window Height: ${window.innerHeight}`);
+	console.log(`Window Width: ${window.innerWidth}`);
+}
+
 function getOverlay() {
 	const overlay = document.querySelector('#main-help');
 	const overlayInner = document.querySelector('#main-help-overlay');
@@ -299,9 +304,8 @@ function app() {
 		reader.onload = () => parseText(reader.result);
 		// This allows us access to the file data outside of the object event
 		data = reader.readAsText(input.files[0]);
-		console.log(data);
 	});
-
+	window.onresize = onWindowResize;
 	document.querySelector('#helpBtn').addEventListener('click', showOverlay);
 }
 

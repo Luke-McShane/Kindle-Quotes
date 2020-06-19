@@ -354,6 +354,9 @@ th {
   #main-buttons #helpBtn {
     display: block;
   }
+  #main-buttons #help {
+    display: none;
+  }
   #main-text-title {
     font-size: 2.5rem;
   }
@@ -396,6 +399,7 @@ th {
     margin: 0 0.5em;
     line-height: 1.4rem;
     width: 90px;
+    font-size: 1.15rem;
   }
   #main-text {
     width: 100%;
