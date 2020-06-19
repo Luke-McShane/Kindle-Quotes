@@ -22,9 +22,10 @@ function parseText(text) {
 		}
 	}
 	chunkedText.pop();
-
+	// console.log(chunkedText);
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i][0] = chunkedText[i][0].split('(');
+		console.log(chunkedText[i]);
 
 		// Changing the order if the author's firstname is preceded by their lastname.
 		if (chunkedText[i][0][1].includes(',')) {
@@ -34,9 +35,7 @@ function parseText(text) {
 
 			// Else we simply remove the closing bracket from the string.
 		} else {
-			console.log(`Chunked text 1: START${chunkedText[i][0][1].trim()}`);
 			chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].trim().length - 1);
-			console.log(`Chunked text 2: START${chunkedText[i][0][1]}`);
 		}
 
 		quotes.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
@@ -254,7 +253,6 @@ function app() {
 		// This allows us access to the file data outside of the object event
 		data = reader.readAsText(input.files[0]);
 	});
-	window.onresize = onWindowResize;
 	document.querySelector('#helpBtn').addEventListener('click', showOverlay);
 	getDefaultClippings();
 }
