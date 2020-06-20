@@ -24,6 +24,9 @@ function parseText(text) {
 	chunkedText.pop();
 	// console.log(chunkedText);
 	for (let i = 0; i < chunkedText.length; i++) {
+		// THIS CODE IS FINE BUT YOU NEED TO CHECK IF THERE IS A BRACKET TO SPLIT ON,
+		// OTHERWISE JUST CONTINUE AND IGNORE THIS
+		// CREATE A DIALOG SOMEWHERE THAT INFORMS THE USER THAT SOME ENTRIES WERE OMITED DUE TO POOR FORMATTING
 		chunkedText[i][0] = chunkedText[i][0].split('(');
 		console.log(chunkedText[i]);
 
