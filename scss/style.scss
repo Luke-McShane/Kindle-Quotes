@@ -40,6 +40,7 @@ th {
   justify-content: space-around;
   align-items: stretch;
   position: relative;
+  min-height: 80vh;
 
   &-help {
     background: #4d4d4d;
@@ -201,6 +202,40 @@ th {
   }
 }
 
+#error {
+  // display: hidden;
+  // position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  z-index: 3;
+  // left: 25%;
+  bottom: 0;
+
+  &-container {
+    width: 50%;
+    padding: 0.5rem;
+
+    &-text {
+      position: relative;
+
+      &-cancel {
+        padding: 1rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      &-content {
+        padding-top: 3rem;
+      }
+    }
+  }
+}
+
 .btn {
   line-height: 1rem;
   width: 100%;
@@ -336,6 +371,10 @@ th {
         margin-bottom: 1rem;
       }
     }
+  }
+
+  #error-container {
+    width: 100%;
   }
 }
 

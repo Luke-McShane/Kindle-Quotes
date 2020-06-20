@@ -125,6 +125,7 @@ th {
       -ms-flex-align: stretch;
           align-items: stretch;
   position: relative;
+  min-height: 80vh;
 }
 
 #main-help {
@@ -314,6 +315,41 @@ th {
   width: 30px;
 }
 
+#error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  z-index: 3;
+  bottom: 0;
+}
+
+#error-container {
+  width: 50%;
+  padding: 0.5rem;
+}
+
+#error-container-text {
+  position: relative;
+}
+
+#error-container-text-cancel {
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#error-container-text-content {
+  padding-top: 3rem;
+}
+
 .btn {
   line-height: 1rem;
   width: 100%;
@@ -412,6 +448,9 @@ th {
   }
   #main-text-author {
     margin-bottom: 1rem;
+  }
+  #error-container {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=style.css.map */

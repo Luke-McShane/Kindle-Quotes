@@ -9,7 +9,6 @@ let book = '';
 let author = '';
 
 function parseText(text) {
-	console.log(text);
 	chunkedText = text.split('==========');
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
@@ -23,22 +22,28 @@ function parseText(text) {
 	}
 	chunkedText.pop();
 	// console.log(chunkedText);
+	let error = false;
 	for (let i = 0; i < chunkedText.length; i++) {
 		// THIS CODE IS FINE BUT YOU NEED TO CHECK IF THERE IS A BRACKET TO SPLIT ON,
 		// OTHERWISE JUST CONTINUE AND IGNORE THIS
 		// CREATE A DIALOG SOMEWHERE THAT INFORMS THE USER THAT SOME ENTRIES WERE OMITED DUE TO POOR FORMATTING
-		chunkedText[i][0] = chunkedText[i][0].split('(');
-		console.log(chunkedText[i]);
+		if (chunkedText[i][0].includes('(')) {
+			chunkedText[i][0] = chunkedText[i][0].split('(');
+			// console.log(chunkedText[i]);
 
-		// Changing the order if the author's firstname is preceded by their lastname.
-		if (chunkedText[i][0][1].includes(',')) {
-			chunkedText[i][0][1] = chunkedText[i][0][1].split(',');
-			chunkedText[i][0][1][1] = chunkedText[i][0][1][1].trim().replace(')', '');
-			chunkedText[i][0][1] = `${chunkedText[i][0][1][1]} ${chunkedText[i][0][1][0]}`;
+			// Changing the order if the author's firstname is preceded by their lastname.
+			if (chunkedText[i][0][1].includes(',')) {
+				chunkedText[i][0][1] = chunkedText[i][0][1].split(',');
+				chunkedText[i][0][1][1] = chunkedText[i][0][1][1].trim().replace(')', '');
+				chunkedText[i][0][1] = `${chunkedText[i][0][1][1]} ${chunkedText[i][0][1][0]}`;
 
-			// Else we simply remove the closing bracket from the string.
+				// Else we simply remove the closing bracket from the string.
+			} else {
+				chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].trim().length - 1);
+			}
 		} else {
-			chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].trim().length - 1);
+			error = true;
+			continue;
 		}
 
 		quotes.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
@@ -46,6 +51,8 @@ function parseText(text) {
 	}
 	quoteGen();
 }
+
+function showError() {}
 
 function quoteGen() {
 	let currentQuote = Math.floor(Math.random() * quotesFiltered.length);
