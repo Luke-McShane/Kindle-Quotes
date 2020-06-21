@@ -230,7 +230,7 @@ th {
 }
 
 #main-text-title {
-  font-size: 4rem;
+  font-size: 2.5rem;
   text-align: left;
   margin-bottom: 4rem;
 }
@@ -238,14 +238,14 @@ th {
 #main-text-author {
   height: auto;
   font-style: italic;
-  font-size: 3.5rem;
+  font-size: 2.2rem;
   text-align: left;
   margin-bottom: 2rem;
 }
 
 #main-text-quote {
   width: 100%;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-style: italic;
   text-align: left;
   line-height: 1.3em;
