@@ -303,7 +303,7 @@ th {
 }
 
 @media only screen and (max-width: 768px),
-(max-height: 768px) {
+screen and (max-height: 768px) and (max-width:1024px) {
   #main {
     &-buttons {
       margin-top: 1rem;
@@ -349,13 +349,17 @@ th {
 
       &-buttons {
         height: 7%;
+
+        .modalButtons {
+          font-size: 1rem;
+        }
       }
     }
   }
 }
 
 @media only screen and (max-width: 500px),
-(max-height: 768px) {
+screen and (max-height: 500px) {
   #main {
     display: flex;
     flex-direction: column;

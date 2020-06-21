@@ -29,7 +29,7 @@
 
 #modal-content {
   margin: 0.5em 2em;
-  height: 80%;
+  height: 90%;
   padding: 2em;
   border: 10px solid ivory;
   width: 80%;
@@ -67,11 +67,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 15%;
+  height: 10%;
 }
 
 #modal-content-buttons .modalButtons {
-  font-size: calc(2px + 1.5vw);
+  font-size: 1.4rem;
   border: 2px solid ivory;
   margin: 0em 2em;
   padding: 0.5em;
@@ -382,7 +382,7 @@ th {
   }
 }
 
-@media only screen and (max-width: 768px), (max-height: 768px) {
+@media only screen and (max-width: 768px), screen and (max-height: 768px) and (max-width: 1024px) {
   #main-buttons {
     margin-top: 1rem;
   }
@@ -415,9 +415,12 @@ th {
   #modal-content-buttons {
     height: 7%;
   }
+  #modal-content-buttons .modalButtons {
+    font-size: 1rem;
+  }
 }
 
-@media only screen and (max-width: 500px), (max-height: 768px) {
+@media only screen and (max-width: 500px), screen and (max-height: 500px) {
   #main {
     display: -webkit-box;
     display: -ms-flexbox;
