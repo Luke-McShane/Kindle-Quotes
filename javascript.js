@@ -49,10 +49,17 @@ function parseText(text) {
 		quotes.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
 		quotesFiltered.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
 	}
+	if (error) showError();
 	quoteGen();
 }
 
-function showError() {}
+function showError() {
+	const error = document.querySelector('#error');
+	error.style.visibility = 'visible';
+	setTimeout(() => {
+		error.style.visibility = 'hidden';
+	}, 5000);
+}
 
 function quoteGen() {
 	let currentQuote = Math.floor(Math.random() * quotesFiltered.length);
