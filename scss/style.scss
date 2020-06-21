@@ -302,7 +302,8 @@ th {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px),
+(max-height: 768px) {
   #main {
     &-buttons {
       margin-top: 1rem;
@@ -353,7 +354,8 @@ th {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 500px),
+(max-height: 768px) {
   #main {
     display: flex;
     flex-direction: column;
