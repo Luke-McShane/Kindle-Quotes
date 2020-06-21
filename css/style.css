@@ -115,17 +115,9 @@ th {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
   position: relative;
-  min-height: 80vh;
 }
 
 #main-help {
@@ -260,17 +252,12 @@ th {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   text-align: center;
   z-index: 1;
   position: fixed;
   width: auto;
   left: 10%;
+  top: 10%;
 }
 
 #main-buttons #getPath {
@@ -279,10 +266,6 @@ th {
 
 #main-buttons #linkKindle {
   position: relative;
-}
-
-#main-buttons #help {
-  cursor: pointer;
 }
 
 #main-buttons #help:hover #toolTip {
@@ -294,8 +277,8 @@ th {
 }
 
 #main-buttons #toolTip {
-  visibility: hidden;
   cursor: auto;
+  visibility: hidden;
   position: absolute;
   width: 580px;
   text-align: left;
@@ -351,6 +334,7 @@ th {
 
 #error-container-text-cancel {
   padding-left: 1rem;
+  cursor: pointer;
 }
 
 .btn {
@@ -366,7 +350,6 @@ th {
   cursor: pointer;
 }
 
-/* Resizing both buttons as the user collapses and expands the screen */
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
   #main-text-title {
     font-size: 2.2rem;

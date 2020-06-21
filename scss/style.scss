@@ -1,3 +1,4 @@
+// Import all partials
 @import "modal";
 @import "variables";
 
@@ -5,15 +6,18 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  // Making use of SASS variables as defined in the variables partial
   background-color: $primary-colour;
   color: $font-colour;
   font-family: $font-primary;
 }
 
+// Ensure the scrollbar doesn't interfere with the page elements
 html {
   overflow-y: scroll;
 }
 
+// Basic element styling
 table,
 th,
 td {
@@ -36,11 +40,8 @@ th {
 
 #main {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
-  align-items: stretch;
   position: relative;
-  min-height: 80vh;
 
   &-help {
     background: #4d4d4d;
@@ -146,17 +147,12 @@ th {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     z-index: 1;
-    // margin: 0 4rem;
-    // 	
     position: fixed;
     width: auto;
-    // margin-top: 3rem;
     left: 10%;
-    // transform: translateX(0%);
+    top: 10%;
 
     #getPath {
       display: none;
@@ -167,8 +163,6 @@ th {
     }
 
     #help {
-      cursor: pointer;
-
       &:hover #toolTip {
         visibility: visible;
       }
@@ -179,8 +173,8 @@ th {
     }
 
     #toolTip {
-      visibility: hidden;
       cursor: auto;
+      visibility: hidden;
       position: absolute;
       width: 580px;
       text-align: left;
@@ -202,20 +196,20 @@ th {
   }
 }
 
+// Styling for the error popup that appears whenever there has been a read error
 #error {
   visibility: hidden;
-  // position: fixed;
   display: flex;
+  // Set width to 100% so we can easily center the container
   width: 100%;
   justify-content: center;
+  // Set the position to fixed so the appearance of the popup doesn't affect the document flow
   position: fixed;
   background-color: rgba(0, 0, 0, 0);
   padding: 0.5rem 0.5rem 0 0.5rem;
   z-index: 3;
-  // left: 25%;
   bottom: 0;
   transform: translateY(300px);
-  // transition: all 800ms ease;
 
   &-container {
     width: 50%;
@@ -230,54 +224,28 @@ th {
       padding-bottom: 1rem;
 
       &-cancel {
-        // padding: 1rem;
-        // position: absolute;
-        // top: 0;
-        // right: 0;
         padding-left: 1rem;
+        cursor: pointer;
       }
     }
   }
 }
 
+// Basic class that all buttons will use
 .btn {
   line-height: 1rem;
   width: 100%;
   height: 100%;
-  // margin: 0.25em 2em 1.5em 2em;
   margin: 1.5rem 0;
   padding: 1.5em 0.5rem;
-  // font-size: calc(4px + 2vw);
   font-size: 1.4rem;
   font-weight: 500;
   border: 2px solid ivory;
-  // border-radius: 1em;
   outline: 0;
   cursor: pointer;
 }
 
-
-
-/* Resizing both buttons as the user collapses and expands the screen */
-// @media only screen and (max-width: 1500px) and (min-width: 768px) {
-//   #quoteGen {
-//     line-height: 3vw;
-//     text-align: center;
-//     width: 15vw;
-//     height: 10vw;
-//     font-size: calc(4px + 2vw);
-//   }
-// }
-
-// @media only screen and (max-width: 1500px) and (min-width: 768px) {
-//   #bookSelect {
-//     line-height: 3vw;
-//     width: 15vw;
-//     height: 10vw;
-//     font-size: calc(4px + 2vw);
-//   }
-// }
-
+// Media query for tablet
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
   #main {
     &-text {
@@ -302,6 +270,8 @@ th {
   }
 }
 
+// Media query for small tablets and large phones
+// Also style tablets that are use in landscape
 @media only screen and (max-width: 768px),
 screen and (max-height: 768px) and (max-width:1024px) {
   #main {
@@ -312,9 +282,9 @@ screen and (max-height: 768px) and (max-width:1024px) {
         border: 1px solid $font-colour;
         font-size: 1.2rem;
         padding: 1.4rem 0.4rem;
-        // font-size: 0.6rem;
       }
 
+      // Remove the #help span so the user has the ability to click a button to now show the guide on how to use the site
       #helpBtn {
         display: block;
       }
@@ -339,6 +309,7 @@ screen and (max-height: 768px) and (max-width:1024px) {
     }
   }
 
+  // Increase size of modal
   #modal {
     &-content {
       width: 100%;
@@ -359,9 +330,12 @@ screen and (max-height: 768px) and (max-width:1024px) {
   }
 }
 
+// Media query for phones, including when a phone is used in landscape
 @media only screen and (max-width: 500px),
 screen and (max-height: 360) {
   #main {
+    // Set a min height so that the size of the quote doesn't pull down the buttons, which would happen due to the display being flex and thus
+    // how this encourages the elements to evenly spread over the page
     display: flex;
     flex-direction: column;
     min-height: 100%;
@@ -416,7 +390,6 @@ screen and (max-height: 360) {
   }
 
   #modal {
-
     &-content {
       padding: 0.2rem;
       border: 2px solid ivory;
@@ -441,123 +414,7 @@ screen and (max-height: 360) {
     }
   }
 
-
   #error-container {
     width: 100%;
   }
 }
-
-//   #quoteGen {
-//     line-height: 3vw;
-//     text-align: center;
-//     width: 20vw;
-//     height: 10vw;
-//     font-size: 3vw;
-//   }
-// }
-// @media only screen and (max-width: 768px) and (min-width: 425px) {
-//   #bookSelect {
-//     line-height: 3vw;
-//     width: 20vw;
-//     height: 10vw;
-//     font-size: 3vw;
-//   }
-// }
-
-// @media only screen and (max-width: 500px) {
-//   #quoteGen {
-//     line-height: 3vw;
-//     text-align: center;
-//     width: 20vw;
-//     height: 10vw;
-//     font-size: 3vw;
-//   }
-// }
-
-// /* The entire modal */
-// .modal {
-//   display: none;
-//   /* Hidden by default */
-//   position: fixed;
-//   /* Stay in place */
-//   z-index: 1;
-//   /* Sit on top */
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   /* Full width */
-//   height: 100%;
-//   /* Full height */
-//   flex-direction: column;
-//   justify-content: space-between;
-//   align-items: center;
-//   background-color: rgba(0, 0, 0, 0.4);
-//   /* Black w/ opacity */
-// }
-
-// /* The content box that will host both the button div and the table */
-// .modal-content {
-//   background-color: #2b2b2b;
-//   margin: 0.5em 2em;
-//   height: 80%;
-//   padding: 2em;
-//   border: 10px solid ivory;
-//   width: 80%;
-// }
-
-// #modalText {
-//   color: ivory;
-//   text-decoration: none;
-// }
-
-// #modalButtonDiv {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   align-items: center;
-//   height: 15%;
-// }
-
-// .modalButtons {
-//   font-family: 'Raleway', serif;
-//   font-size: calc(2px + 1.5vw);
-//   color: ivory;
-//   background-color: #2b2b2b;
-//   border: 2px solid ivory;
-//   border-radius: 4px;
-//   margin: 0em 2em;
-//   padding: 0.5em;
-// }
-
-// table,
-// th,
-// td {
-//   border: 1px solid ivory;
-//   padding: 0.5em;
-// }
-
-// table {
-//   width: 100%;
-//   color: ivory;
-// }
-
-// td {
-//   height: 1em;
-//   font-family: 'Raleway', serif;
-//   font-style: italic;
-// }
-
-// th {
-//   text-align: left;
-//   font-family: "Raleway", serif;
-//   font-weight: bold;
-// }
-
-// #innerModalDiv {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   align-items: flex-start;
-//   height: 90%;
-//   overflow: auto;
-// }

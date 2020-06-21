@@ -17,6 +17,7 @@
         <div id="main">
             <div id="main-help"> 
                 <div id="main-help-overlay">
+                    <!-- This code is necessarily repeated because it takes two different forms - one as a popup and one as an overlay -->
                     <ul>
                         <i class="fa fa-times fa-2x" id="close"></i>
                         <li class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer via the USB port</li>
@@ -45,7 +46,6 @@
             <div id="main-text">
                 <h1 id="main-text-title">My Kindle Quotes</h1>
                 <h3 id="main-text-author">Arthur Schopenhauer</h3>
-                <!-- <h3 id="book"></h3> -->
                 <p id="main-text-quote">
                     "It is difficult to find happiness within oneself, but it is impossible to find it anywhere else"                
                 </p>
@@ -73,6 +73,8 @@
             </div>
           </div>
 
+          <!-- This error is separate from the #main section because it shouldn't take up the initial height the #main section will take up, which is
+                due to wanting the quote, if needed, to take up as much height as necessary without a hidden element contributing to the height calculations -->
           <div id="error">
             <div id="error-container">
                 <div id="error-container-text">
