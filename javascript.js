@@ -54,11 +54,15 @@ function parseText(text) {
 }
 
 function showError() {
+	console.log('test');
 	const error = document.querySelector('#error');
+	error.style.transform = 'translateY(0px)';
 	error.style.visibility = 'visible';
-	setTimeout(() => {
-		error.style.visibility = 'hidden';
-	}, 5000);
+	error.style.transition = 'all 500ms ease';
+	// The below code is for if we want the popup to automatically disappear after a set time, otherwise, the user will have to click the 'close' button to close the window
+	// setTimeout(() => {
+	// 	error.style.visibility = 'hidden';
+	// }, 5000);
 }
 
 function quoteGen() {
@@ -271,6 +275,11 @@ function app() {
 		data = reader.readAsText(input.files[0]);
 	});
 	document.querySelector('#helpBtn').addEventListener('click', showOverlay);
+	document.querySelector('#error-container-text-cancel').addEventListener('click', () => {
+		const error = document.querySelector('#error');
+		error.style.visibility = 'hidden';
+		error.style.transform = 'translateY(300px)';
+	});
 	getDefaultClippings();
 }
 

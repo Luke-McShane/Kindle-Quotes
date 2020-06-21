@@ -329,26 +329,28 @@ th {
   padding: 0.5rem 0.5rem 0 0.5rem;
   z-index: 3;
   bottom: 0;
+  -webkit-transform: translateY(300px);
+          transform: translateY(300px);
 }
 
 #error-container {
   width: 50%;
-  padding: 0.5rem;
+  padding: 1rem 1rem 0 1rem;
+  border-radius: 6px 6px 0 0;
+  border: 2px solid ivory;
+  border-bottom: 0;
 }
 
 #error-container-text {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-bottom: 1rem;
 }
 
 #error-container-text-cancel {
-  padding: 1rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-#error-container-text-content {
-  padding-top: 3rem;
+  padding-left: 1rem;
 }
 
 .btn {
@@ -414,6 +416,7 @@ th {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    min-height: 100%;
   }
   #main-buttons {
     margin: 1rem 0;
@@ -449,6 +452,28 @@ th {
   }
   #main-text-author {
     margin-bottom: 1rem;
+  }
+  #main-help-overlay ul {
+    width: 49%;
+  }
+  #modal-content {
+    padding: 0.2rem;
+    border: 2px solid ivory;
+    height: 95%;
+    width: 100%;
+    margin: 0;
+  }
+  #modal-content-table {
+    font-size: 0.5rem;
+    height: 93%;
+  }
+  #modal-content-buttons {
+    height: auto;
+    margin-top: 1rem;
+  }
+  #modal-content-buttons .modalButtons {
+    font-size: 0.6rem;
+    margin: 0 0.6rem;
   }
   #error-container {
     width: 100%;
