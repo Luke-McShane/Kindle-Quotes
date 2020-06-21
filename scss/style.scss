@@ -311,6 +311,7 @@ screen and (max-height: 768px) and (max-width:1024px) {
       button {
         border: 1px solid $font-colour;
         font-size: 1.2rem;
+        padding: 1.4rem 0.4rem;
         // font-size: 0.6rem;
       }
 
@@ -325,15 +326,15 @@ screen and (max-height: 768px) and (max-width:1024px) {
 
     &-text {
       &-title {
-        font-size: 2.5rem;
-      }
-
-      &-author {
         font-size: 2rem;
       }
 
-      &-quote {
+      &-author {
         font-size: 1.8rem;
+      }
+
+      &-quote {
+        font-size: 1.2rem;
       }
     }
   }
@@ -359,7 +360,7 @@ screen and (max-height: 768px) and (max-width:1024px) {
 }
 
 @media only screen and (max-width: 500px),
-screen and (max-height: 500px) {
+screen and (max-height: 360) {
   #main {
     display: flex;
     flex-direction: column;
@@ -396,11 +397,11 @@ screen and (max-height: 500px) {
 
       &-author {
         font-size: 1.3rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.1rem;
       }
 
       &-quote {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
     }
 
