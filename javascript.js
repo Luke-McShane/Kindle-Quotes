@@ -78,9 +78,14 @@ function showError() {
 // Generate a quote and show it on the site
 // This is done by selecting a random item in the filtered quotes array
 function quoteGen() {
-	let currentQuote = Math.floor(Math.random() * quotesFiltered.length);
-	let quote = document.getElementById('main-text-quote');
-	let quoteText = quotesFiltered[currentQuote].quote;
+	let currentQuote;
+	let quote;
+	let quoteText;
+	do {
+		currentQuote = Math.floor(Math.random() * quotesFiltered.length);
+		quote = document.getElementById('main-text-quote');
+		quoteText = quotesFiltered[currentQuote].quote;
+	} while (quoteText.match(/ /g) === null || quoteText.match(/ /g).length < 2);
 	let firstChar = quoteText[0];
 	let lastChar = quoteText[quotesFiltered[currentQuote].quote.length - 2];
 
