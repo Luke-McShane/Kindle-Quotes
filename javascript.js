@@ -50,8 +50,16 @@ function parseText(text) {
 		}
 
 		// Push all text data to the array for future use
-		quotes.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
-		quotesFiltered.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
+		quotes.push({
+			author: chunkedText[i][0][1].trim(),
+			book: chunkedText[i][0][0].trim(),
+			quote: chunkedText[i][2].trim()
+		});
+		quotesFiltered.push({
+			author: chunkedText[i][0][1].trim(),
+			book: chunkedText[i][0][0].trim(),
+			quote: chunkedText[i][2].trim()
+		});
 	}
 	// If there is an error in reading, show the error to the user
 	if (error) showError();
@@ -102,8 +110,13 @@ function bookSelect() {
 	let numRows = Array.from(document.getElementsByClassName('inputModal')).length;
 	if (numRows == 0) {
 		let uniqueBooks = Array.from(new Set(quotes.map((item) => item.book))).map((book) => {
-			if (!allowedBooksModal.includes(book.replace(/ /g, '')) && allowedBooks.includes(book.replace(/ /g, '')))
+			if (
+				!allowedBooksModal.includes(book.replace(/[^A-Za-z0-9]/g, '')) &&
+				allowedBooks.includes(book.replace(/[^A-Za-z0-9]/g, ''))
+			) {
+				console.log(book.replace(/ /g, ''));
 				allowedBooks.push(book.replace(/ /g, ''));
+			}
 			return {
 				author: quotes.find((item) => item.book == book).author,
 				book: book
@@ -118,7 +131,7 @@ function bookSelect() {
 // Create a new table item and populate it according to the amount of table rows we need and what data these rows should contain
 function tableGen(length, uniqueBooks) {
 	let table = document.getElementById('table');
-
+	console.log(uniqueBooks);
 	for (let i = 0; i < length; i++) {
 		let row = document.createElement('tr');
 		let checkboxCell = document.createElement('td');
