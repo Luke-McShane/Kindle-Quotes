@@ -48,6 +48,10 @@ function parseText(text) {
 			error = true;
 			continue;
 		}
+		// console.log(quotes);
+		// console.log(`Book: ${chunkedText[i][0][1].trim()}`);
+		// console.log(`Author: ${chunkedText[i][0][0].trim()}`);
+		// console.log(`Quote: ${chunkedText[i][2]}`);
 
 		// Push all text data to the array for future use
 		quotes.push({
@@ -61,6 +65,7 @@ function parseText(text) {
 			quote: chunkedText[i][2].trim()
 		});
 	}
+	// console.log(quotes);3q
 	// If there is an error in reading, show the error to the user
 	if (error) showError();
 	quoteGen();
@@ -68,7 +73,6 @@ function parseText(text) {
 
 // Show the error by altering the popup's style properties
 function showError() {
-	console.log('test');
 	const error = document.querySelector('#error');
 	error.style.transform = 'translateY(0px)';
 	error.style.visibility = 'visible';
@@ -313,7 +317,13 @@ function app() {
 		// When the file has been loaded, pass the contained data to the parseText method
 		// This is an asynchronous method, meaning that it is ran whenever necessary, and the browser doesn't need to wait/freeze
 		// for the process to finish executing for the code below to run
-		reader.onload = () => parseText(reader.result);
+		reader.onload = () => {
+			quotes = [];
+			quotesFiltered = [];
+			console.log(reader.result);
+			localStorage.setItem('text', reader.result);
+			parseText(reader.result);
+		};
 		// This allows us access to the file data outside of the object event
 		data = reader.readAsText(input.files[0]);
 	});
@@ -328,18 +338,20 @@ function app() {
 
 // Read in the default file
 function getDefaultClippings() {
-	const rawFile = new XMLHttpRequest();
 	let allText;
-	rawFile.open('GET', 'My Clippings.txt', false);
-	rawFile.onreadystatechange = function() {
-		if (rawFile.readyState === 4) {
-			if (rawFile.status === 200 || rawFile.status == 0) {
-				allText = rawFile.responseText;
-				parseText(rawFile.responseText);
+	if (localStorage.getItem('text') === null) {
+		const rawFile = new XMLHttpRequest();
+		rawFile.open('GET', 'My Clippings.txt', false);
+		rawFile.onreadystatechange = function() {
+			if (rawFile.readyState === 4) {
+				if (rawFile.status === 200 || rawFile.status == 0) {
+					allText = rawFile.responseText;
+					parseText(rawFile.responseText);
+				}
 			}
-		}
-	};
-	rawFile.send(null);
+			rawFile.send(null);
+		};
+	} else parseText(localStorage.getItem('text'));
 }
 
 // Call the app function for application setup and initialization
