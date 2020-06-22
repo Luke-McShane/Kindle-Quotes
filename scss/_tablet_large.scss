@@ -1,0 +1,24 @@
+// Media query for large tablets
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  #main {
+    &-text {
+      &-title {
+        font-size: 2.2rem;
+      }
+
+      &-author {
+        font-size: 2rem;
+      }
+
+      &-quote {
+        font-size: 1.3rem;
+      }
+    }
+
+    &-buttons {
+      button {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

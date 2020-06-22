@@ -1,6 +1,9 @@
 // Import all partials
 @import "modal";
 @import "variables";
+@import "tablet_large";
+@import "tablet";
+@import "phone";
 
 * {
   padding: 0;
@@ -36,6 +39,20 @@ td {
 th {
   text-align: left;
   font-weight: bold;
+}
+
+// Basic class that all buttons will use
+.btn {
+  line-height: 1rem;
+  width: 100%;
+  height: 100%;
+  margin: 1.5rem 0;
+  padding: 1.5em 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  border: 2px solid ivory;
+  outline: 0;
+  cursor: pointer;
 }
 
 #main {
@@ -104,8 +121,6 @@ th {
             width: 30px;
           }
         }
-
-
       }
     }
   }
@@ -228,193 +243,5 @@ th {
         cursor: pointer;
       }
     }
-  }
-}
-
-// Basic class that all buttons will use
-.btn {
-  line-height: 1rem;
-  width: 100%;
-  height: 100%;
-  margin: 1.5rem 0;
-  padding: 1.5em 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 500;
-  border: 2px solid ivory;
-  outline: 0;
-  cursor: pointer;
-}
-
-// Media query for tablet
-@media only screen and (max-width: 1024px) and (min-width: 768px) {
-  #main {
-    &-text {
-      &-title {
-        font-size: 2.2rem;
-      }
-
-      &-author {
-        font-size: 2rem;
-      }
-
-      &-quote {
-        font-size: 1.3rem;
-      }
-    }
-
-    &-buttons {
-      button {
-        font-size: 1.5rem;
-      }
-    }
-  }
-}
-
-// Media query for small tablets and large phones
-// Also style tablets that are use in landscape
-@media only screen and (max-width: 768px),
-screen and (max-height: 768px) and (max-width:1024px) {
-  #main {
-    &-buttons {
-      margin-top: 1rem;
-
-      button {
-        border: 1px solid $font-colour;
-        font-size: 1.2rem;
-        padding: 1.4rem 0.4rem;
-      }
-
-      // Remove the #help span so the user has the ability to click a button to now show the guide on how to use the site
-      #helpBtn {
-        display: block;
-      }
-
-      #help {
-        display: none;
-      }
-    }
-
-    &-text {
-      &-title {
-        font-size: 2rem;
-      }
-
-      &-author {
-        font-size: 1.8rem;
-      }
-
-      &-quote {
-        font-size: 1.2rem;
-      }
-    }
-  }
-
-  // Increase size of modal
-  #modal {
-    &-content {
-      width: 100%;
-      height: 100%;
-
-      &-table {
-        height: 93%
-      }
-
-      &-buttons {
-        height: 7%;
-
-        .modalButtons {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
-}
-
-// Media query for phones, including when a phone is used in landscape
-@media only screen and (max-width: 500px),
-screen and (max-height: 360) {
-  #main {
-    // Set a min height so that the size of the quote doesn't pull down the buttons, which would happen due to the display being flex and thus
-    // how this encourages the elements to evenly spread over the page
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-
-    &-buttons {
-      margin: 1rem 0;
-      position: relative;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      left: 0;
-
-      .btn {
-        padding: 0.5rem 0.5rem;
-        margin: 0 0.3em;
-        line-height: 1.4rem;
-        width: 90px;
-        font-size: 1rem;
-      }
-    }
-
-    &-text {
-      width: 100%;
-      transform: translateX(0%);
-      margin: 0;
-      padding: 1rem 1rem 0 1rem;
-
-      &-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      &-author {
-        font-size: 1.3rem;
-        margin-bottom: 1.1rem;
-      }
-
-      &-quote {
-        font-size: 1rem;
-      }
-    }
-
-    &-help {
-      &-overlay {
-        ul {
-          width: 49%;
-        }
-      }
-    }
-
-  }
-
-  #modal {
-    &-content {
-      padding: 0.2rem;
-      border: 2px solid ivory;
-      height: 95%;
-      width: 100%;
-      margin: 0;
-
-      &-table {
-        font-size: 0.5rem;
-        height: 93%;
-      }
-
-      &-buttons {
-        height: auto;
-        margin-top: 1rem;
-
-        .modalButtons {
-          font-size: 0.6rem;
-          margin: 0 0.6rem
-        }
-      }
-    }
-  }
-
-  #error-container {
-    width: 100%;
   }
 }
