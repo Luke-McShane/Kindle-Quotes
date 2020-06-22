@@ -1,4 +1,4 @@
-// Add event listeners to the buttons contained on the main page and within the modal
+// Global variables
 let modal = document.getElementById('modal');
 let allowedBooks = [];
 let allowedBooksModal = [];
@@ -8,7 +8,10 @@ let chunkedText;
 let book = '';
 let author = '';
 
+// Parse the file
+// This file may be either the default file or the .txt file the user selects
 function parseText(text) {
+	// Split the text file into quotes based on the standard formatting used by Kindle
 	chunkedText = text.split('==========');
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
@@ -21,15 +24,13 @@ function parseText(text) {
 		}
 	}
 	chunkedText.pop();
-	// console.log(chunkedText);
+
+	// Iterate through the array of quotes, checking for formatting each time and, where there is no formatting issue, format the array items so
+	// we can extract the relevant data to be displayed on the webpage
 	let error = false;
 	for (let i = 0; i < chunkedText.length; i++) {
-		// THIS CODE IS FINE BUT YOU NEED TO CHECK IF THERE IS A BRACKET TO SPLIT ON,
-		// OTHERWISE JUST CONTINUE AND IGNORE THIS
-		// CREATE A DIALOG SOMEWHERE THAT INFORMS THE USER THAT SOME ENTRIES WERE OMITED DUE TO POOR FORMATTING
 		if (chunkedText[i][0].includes('(')) {
 			chunkedText[i][0] = chunkedText[i][0].split('(');
-			// console.log(chunkedText[i]);
 
 			// Changing the order if the author's firstname is preceded by their lastname.
 			if (chunkedText[i][0][1].includes(',')) {
@@ -41,30 +42,33 @@ function parseText(text) {
 			} else {
 				chunkedText[i][0][1] = chunkedText[i][0][1].trim().substring(0, chunkedText[i][0][1].trim().length - 1);
 			}
+			// If there is no forward-bracket, then a formatting issue is present within the .txt file, which means that this iteration of the loop is skipped and the
+			// user is shown the error/info message which guides them on how to format any improperly formatted items in their file
 		} else {
 			error = true;
 			continue;
 		}
 
+		// Push all text data to the array for future use
 		quotes.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
 		quotesFiltered.push({ author: chunkedText[i][0][1], book: chunkedText[i][0][0], quote: chunkedText[i][2] });
 	}
+	// If there is an error in reading, show the error to the user
 	if (error) showError();
 	quoteGen();
 }
 
+// Show the error by altering the popup's style properties
 function showError() {
 	console.log('test');
 	const error = document.querySelector('#error');
 	error.style.transform = 'translateY(0px)';
 	error.style.visibility = 'visible';
 	error.style.transition = 'all 500ms ease';
-	// The below code is for if we want the popup to automatically disappear after a set time, otherwise, the user will have to click the 'close' button to close the window
-	// setTimeout(() => {
-	// 	error.style.visibility = 'hidden';
-	// }, 5000);
 }
 
+// Generate a quote and show it on the site
+// This is done by selecting a random item in the filtered quotes array
 function quoteGen() {
 	let currentQuote = Math.floor(Math.random() * quotesFiltered.length);
 	let quote = document.getElementById('main-text-quote');
@@ -73,6 +77,7 @@ function quoteGen() {
 	let lastChar = quoteText[quotesFiltered[currentQuote].quote.length - 2];
 
 	// Checking what the first and last characters are to determine what text may be added to format the string
+	// We check to see if the quote has trailing text, meaning that we can add '..' to show that there is more text in the book
 	if (
 		(firstChar == firstChar.toLowerCase() && firstChar != firstChar.toUpperCase()) ||
 		(firstChar != '“' && firstChar != '"' && !firstChar.match(/^[a-z0-9]+$/i))
@@ -88,6 +93,8 @@ function quoteGen() {
 		quotesFiltered[currentQuote].author + ': ' + quotesFiltered[currentQuote].book;
 }
 
+// Show the modal and populate it with all books from the imported text file
+// Due to their likely being many quotes from the same book, we must filter the books so only one book for each set of quotes is shown
 function bookSelect() {
 	modal.style.display = 'flex';
 
@@ -103,10 +110,12 @@ function bookSelect() {
 			};
 		});
 		allowedBooksModal = allowedBooks.slice(0);
+		// Generate the table based on the amount of entries we need and the selection of books
 		tableGen(uniqueBooks.length, uniqueBooks);
 	}
 }
 
+// Create a new table item and populate it according to the amount of table rows we need and what data these rows should contain
 function tableGen(length, uniqueBooks) {
 	let table = document.getElementById('table');
 
@@ -152,6 +161,8 @@ function tableGen(length, uniqueBooks) {
 	);
 }
 
+// When the checkbox is toggled,  update the array that determines what books will be used to select quotes from
+// If a user ticks a book, then we want quotes from that book to be able to be selected when generating quotes
 function checkboxChange(checkboxElement) {
 	let thisArray = document.getElementsByClassName(checkboxElement.classList[1]);
 	let book = thisArray[2].innerText.replace(/ /g, '');
@@ -164,6 +175,9 @@ function checkboxChange(checkboxElement) {
 	}
 }
 
+// Ensure the user has selected at least one book to be used in the quote generation process, then create a copy of the array of allowed books
+// and filter all the quotes based on the user selection of books
+// Finally, hide the modal and generate a quote based on this newly filtered array of quotes
 function saveSelection() {
 	if (allowedBooksModal.length === 0) {
 		alert('Please select at least one book.');
@@ -178,6 +192,7 @@ function saveSelection() {
 	}
 }
 
+// If the user cancels their selection, we should ignore all changes the user has made during the time the modal has been visible
 function cancelSelection() {
 	modal.style.display = 'none';
 	allowedBooksModal = allowedBooks.slice(0);
@@ -200,6 +215,7 @@ function cancelSelection() {
 	quoteGen();
 }
 
+// Select all books in the modal and add them to the array that will be used to filter all quotes after the selection of books has been saved
 function selectAll() {
 	Array.from(document.body.getElementsByClassName('inputModal')).forEach(function(element) {
 		element.checked = 1;
@@ -212,6 +228,9 @@ function selectAll() {
 	});
 }
 
+// Deselect all books within the modal and remove the book from the allowed books array if it is present therein
+// The .replace(/ / g, '') is used to ensure all whitespace is standardized so we aren't skipping out on removing items that are identical
+// This method removes all whitespace and replaces it with nothing, meaning all whitespace is removed
 function deselectAll() {
 	Array.from(document.body.getElementsByClassName('inputModal')).forEach(function(element) {
 		element.checked = 0;
@@ -224,6 +243,8 @@ function deselectAll() {
 	});
 }
 
+// Show the overlay that contains the data which informs the user how to use the site
+// This function can only be called from mobile and tablet devices due to being called from a button that is only shown on these two device types
 function showOverlay() {
 	const [ overlay, overlayInner, overlayInnerText ] = getOverlay();
 	const close = document.querySelector('#close');
@@ -232,6 +253,7 @@ function showOverlay() {
 	overlayInner.style.transitionDuration = '400ms';
 	overlayInnerText.style.opacity = 1;
 	overlayInnerText.style.transition = 'opacity 400ms ease 400ms';
+	// Get the overlay data through destructuring and apply the relevant transformations/styles
 	close.addEventListener('click', () => {
 		const [ overlay, overlayInner, overlayInnerText ] = getOverlay();
 		overlay.style.visibility = 'hidden';
@@ -240,6 +262,7 @@ function showOverlay() {
 	});
 }
 
+// Return the overlay elements to make the code more DRY
 function getOverlay() {
 	const overlay = document.querySelector('#main-help');
 	const overlayInner = document.querySelector('#main-help-overlay');
@@ -247,6 +270,8 @@ function getOverlay() {
 	return [ overlay, overlayInner, overlayInnerText ];
 }
 
+// Setup the application
+// Ensure all buttons are setup correctly before reading in the default clippings file that contains an abundance of Kindle quotes
 function app() {
 	// Setup event listeners
 	document.getElementById('quoteGen').addEventListener('click', quoteGen);
@@ -283,6 +308,7 @@ function app() {
 	getDefaultClippings();
 }
 
+// Read in the default file
 function getDefaultClippings() {
 	const rawFile = new XMLHttpRequest();
 	let allText;
@@ -298,24 +324,5 @@ function getDefaultClippings() {
 	rawFile.send(null);
 }
 
+// Call the app function for application setup and initialization
 app();
-
-//IDEAS
-
-//Save user's filtered list to cache.
-
-//Use this: 'Object.fromEntries(mainChunks)' to simplify the initial parsing process.
-
-//Improve look and feel of landing page.
-
-//On Modal Cancel I must reset the buttons to what is in allowedBooks so that, when reopening, only the actually selected
-// books are ticked.
-
-//Find where books are being added to allowedBooks even when cancelled is pressed, for books should only be added to
-// this list after Save is clicked.
-
-//Add document.onReady JS equivalent to generate modal so that it isn't regerated each time you click the modal.
-
-//TIP: In JS, saying a = b doesn't mean that a will simply copy the contents of b, it means it will point to the same variable!
-
-//Create a reqest to receive textual data
