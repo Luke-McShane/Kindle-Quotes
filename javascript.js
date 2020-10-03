@@ -16,9 +16,16 @@ function parseText(text) {
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
 		for (let j = 0; j < chunkedText[i].length; j++) {
-			if (chunkedText[i][j].includes('- Your Highlight on page')) {
+			console.log(chunkedText[i][j]);
+			// If the section begins with '- Your Bookmark', there will be no quote, and we thus do not want this displaying
+			if (chunkedText[i][j].includes('- Your Bookmark')) {
+				chunkedText.splice(i, 1);
+				i -= 1;
+				break;
+			} else if (chunkedText[i][j].includes('- Your Highlight on page')) {
 				chunkedText[i].splice(j, 1);
 			} else if (chunkedText[i][j].length <= 4) {
+				console.log(chunkedText[i])
 				chunkedText[i].splice(j, 1);
 			}
 		}
@@ -52,7 +59,7 @@ function parseText(text) {
 		// console.log(`Book: ${chunkedText[i][0][1].trim()}`);
 		// console.log(`Author: ${chunkedText[i][0][0].trim()}`);
 		// console.log(`Quote: ${chunkedText[i][2]}`);
-
+		console.log(chunkedText[i]);
 		// Push all text data to the array for future use
 		quotes.push({
 			author: chunkedText[i][0][1].trim(),
@@ -175,7 +182,7 @@ function tableGen(length, uniqueBooks) {
 
 	// Due to the HTML elements being dynamically created, event listeners must be added to each element after dynamic creation
 	Array.from(document.body.getElementsByClassName('inputModal')).forEach((element) =>
-		element.addEventListener('click', function(event) {
+		element.addEventListener('click', function (event) {
 			if (event.srcElement.classList[0] == 'inputModal') {
 				checkboxChange(event.target);
 			}
@@ -206,7 +213,7 @@ function saveSelection() {
 	} else {
 		allowedBooks = allowedBooksModal.slice(0);
 
-		quotesFiltered = quotes.filter(function(obj) {
+		quotesFiltered = quotes.filter(function (obj) {
 			return allowedBooksModal.includes(obj.book.replace(/ /g, ''));
 		});
 		modal.style.display = 'none';
@@ -239,7 +246,7 @@ function cancelSelection() {
 
 // Select all books in the modal and add them to the array that will be used to filter all quotes after the selection of books has been saved
 function selectAll() {
-	Array.from(document.body.getElementsByClassName('inputModal')).forEach(function(element) {
+	Array.from(document.body.getElementsByClassName('inputModal')).forEach(function (element) {
 		element.checked = 1;
 		let book = Array.from(
 			document.body.getElementsByClassName(element.classList[element.classList.length - 1])
@@ -254,7 +261,7 @@ function selectAll() {
 // The .replace(/ / g, '') is used to ensure all whitespace is standardized so we aren't skipping out on removing items that are identical
 // This method removes all whitespace and replaces it with nothing, meaning all whitespace is removed
 function deselectAll() {
-	Array.from(document.body.getElementsByClassName('inputModal')).forEach(function(element) {
+	Array.from(document.body.getElementsByClassName('inputModal')).forEach(function (element) {
 		element.checked = 0;
 		let book = Array.from(
 			document.body.getElementsByClassName(element.classList[element.classList.length - 1])
@@ -268,7 +275,7 @@ function deselectAll() {
 // Show the overlay that contains the data which informs the user how to use the site
 // This function can only be called from mobile and tablet devices due to being called from a button that is only shown on these two device types
 function showOverlay() {
-	const [ overlay, overlayInner, overlayInnerText ] = getOverlay();
+	const [overlay, overlayInner, overlayInnerText] = getOverlay();
 	const close = document.querySelector('#close');
 	overlay.style.visibility = 'visible';
 	overlayInner.style.transform = 'scale(1)';
@@ -277,7 +284,7 @@ function showOverlay() {
 	overlayInnerText.style.transition = 'opacity 400ms ease 400ms';
 	// Get the overlay data through destructuring and apply the relevant transformations/styles
 	close.addEventListener('click', () => {
-		const [ overlay, overlayInner, overlayInnerText ] = getOverlay();
+		const [overlay, overlayInner, overlayInnerText] = getOverlay();
 		overlay.style.visibility = 'hidden';
 		overlayInner.style.transform = 'scale(0)';
 		overlayInnerText.style.opacity = 0;
@@ -289,7 +296,7 @@ function getOverlay() {
 	const overlay = document.querySelector('#main-help');
 	const overlayInner = document.querySelector('#main-help-overlay');
 	const overlayInnerText = document.querySelector('#main-help-overlay > ul');
-	return [ overlay, overlayInner, overlayInnerText ];
+	return [overlay, overlayInner, overlayInnerText];
 }
 
 // Setup the application
@@ -342,7 +349,7 @@ function getDefaultClippings() {
 	if (localStorage.getItem('text') === null) {
 		const rawFile = new XMLHttpRequest();
 		rawFile.open('GET', 'My Clippings.txt', false);
-		rawFile.onreadystatechange = function() {
+		rawFile.onreadystatechange = function () {
 			if (rawFile.readyState === 4) {
 				if (rawFile.status === 200 || rawFile.status == 0) {
 					allText = rawFile.responseText;
