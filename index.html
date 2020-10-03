@@ -2,98 +2,112 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Quotes from my Kindle</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/style.css">
-        <link href="https://fonts.googleapis.com/css2?/family=Playfair+Display&family=Lora&family=Raleway&family=Libre+Baskerville&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
-    </head>
-    <body>
-        <div id="main">
-            <div id="main-help"> 
-                <div id="main-help-overlay">
-                    <!-- This code is necessarily repeated because it takes two different forms - one as a popup and one as an overlay -->
-                    <ul>
-                        <i class="fa fa-times fa-2x" id="close"></i>
-                        <li class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer via the USB port</li>
-                        <li class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on this webpage</li>
-                        <li class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on your Kindle USB Drive</li>
-                        <li class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</li>
-                    </ul>
-                </div>
-            </div>
-            <div id="main-buttons">
-                <input id="getPath" type="file" accept=".txt" name="file">
-                <button id="quoteGen" class="btn">Generate Quote</button>
-                <button id="bookSelect" class="btn">Select Books</button>
-                <button id="linkKindle" class="btn">Link Kindle 
-                    <span id="help">(?)
-                        <div id="toolTip">
-                            <span class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer via the USB port</span>
-                            <span class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on this webpage</span>
-                            <span class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on your Kindle USB Drive</span>
-                            <span class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</span>
-                        </div>
-                    </span>
-                </button>
-                <button id="helpBtn" class="btn">Site Guide</button>
-            </div>
-            <!-- This innerText is for when there is a read fault and no text is loaded from a file -->
-            <div id="main-text">
-                <h1 id="main-text-title">My Kindle Quotes</h1>
-                <h3 id="main-text-author">Arthur Schopenhauer</h3>
-                <p id="main-text-quote">
-                    "It is difficult to find happiness within oneself, but it is impossible to find it anywhere else"                
-                </p>
-            </div>
-            
-        </div>
-        
-        <div id="modal">
-            <div id="modal-content">
-                <div id="modal-content-table">
-                    <table id="table">
-                        <tr>
-                            <th>Selected</th>
-                            <th>Author</th>
-                            <th>Book Title</th>
-                        </tr>
-                    </table>
-                </div>
-                <div id="modal-content-buttons">
-                    <button id="buttonSelectAll" class="modalButtons">Select All</button>
-                    <button id="buttonSave" class="modalButtons">Save</button>
-                    <button id="buttonCancel" class="modalButtons">Cancel</button>
-                    <button id="buttonDeselectAll" class="modalButtons">Deselect All</button>
-                </div>
-            </div>
-          </div>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
 
-          <!-- This error is separate from the #main section because it shouldn't take up the initial height the #main section will take up, which is
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Quotes from my Kindle</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?/family=Playfair+Display&family=Lora&family=Raleway&family=Libre+Baskerville&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+</head>
+
+<body>
+    <div id="main">
+        <div id="main-help">
+            <div id="main-help-overlay">
+                <!-- This code is necessarily repeated because it takes two different forms - one as a popup and one as an overlay -->
+                <ul>
+                    <i class="fa fa-times fa-2x" id="close"></i>
+                    <li class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your computer
+                        via the USB port</li>
+                    <li class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on this
+                        webpage</li>
+                    <li class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on your
+                        Kindle USB Drive</li>
+                    <li class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</li>
+                </ul>
+            </div>
+        </div>
+        <div id="main-buttons">
+            <input id="getPath" type="file" accept=".txt" name="file">
+            <button id="quoteGen" class="btn">Generate Quote</button>
+            <button id="bookSelect" class="btn">Select Books</button>
+            <button id="linkKindle" class="btn">Link Kindle
+                <span id="help">(?)
+                    <div id="toolTip">
+                        <span class="tip"><i class="fas fa-tablet-alt fa-2x"></i>(1) - Connect your Kindle to your
+                            computer via the USB port</span>
+                        <span class="tip"><i class="fas fa-arrow-up fa-2x"></i>(2) - Click the 'Link Kindle' button on
+                            this webpage</span>
+                        <span class="tip"><i class="fas fa-folder-open fa-2x"></i>(3) - Locate the 'Documents' folder on
+                            your Kindle USB Drive</span>
+                        <span class="tip"><i class="fas fa-file-alt fa-2x"></i>(4) - Select 'My Clippings.txt'</span>
+                    </div>
+                </span>
+            </button>
+            <button id="helpBtn" class="btn">Site Guide</button>
+        </div>
+        <!-- This innerText is for when there is a read fault and no text is loaded from a file -->
+        <div id="main-text">
+            <h1 id="main-text-title">My Kindle Quotes</h1>
+            <h3 id="main-text-author">Arthur Schopenhauer</h3>
+            <p id="main-text-quote">
+                "It is difficult to find happiness within oneself, but it is impossible to find it anywhere else"
+            </p>
+        </div>
+
+    </div>
+
+    <div id="modal">
+        <div id="modal-content">
+            <div id="modal-content-table">
+                <table id="table">
+                    <tr>
+                        <th>Selected</th>
+                        <th>Author</th>
+                        <th>Book Title</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="modal-content-buttons">
+                <button id="buttonSelectAll" class="modalButtons">Select All</button>
+                <button id="buttonSave" class="modalButtons">Save</button>
+                <button id="buttonCancel" class="modalButtons">Cancel</button>
+                <button id="buttonDeselectAll" class="modalButtons">Deselect All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- This error is separate from the #main section because it shouldn't take up the initial height the #main section will take up, which is
                 due to wanting the quote, if needed, to take up as much height as necessary without a hidden element contributing to the height calculations -->
-          <div id="error">
-            <div id="error-container">
-                <div id="error-container-text">
-                    <div id="error-container-text-content">
-                        <h3>Some Kindle entries were not read due to formatting issues. Please ensure all entries are consistently formatted.</h3>
-                        <h4>Please ensure that the format is as follows:</h4>
-                        <p>&nbsp;</p>
-                        <p><i>Book Title (Author)</i></p>
-                        <p><i> - Your highlight on page</i></p>
-                        <p>&nbsp;</p>
-                        <p><i>Quote Text</i></p>
-                    </div>
-                    <div id="error-container-text-cancel">
-                        <i class="fa fa-times" id="close"></i>
-                    </div>
+    <div id="error">
+        <div id="error-container">
+            <div id="error-container-text">
+                <div id="error-container-text-content">
+                    <h3>Some Kindle entries were not read due to formatting issues. Please ensure all entries are
+                        consistently formatted.</h3>
+                    <h4>Please ensure that the format is as follows:</h4>
+                    <p>&nbsp;</p>
+                    <p><i>Book Title (Author)</i></p>
+                    <p><i> - Your highlight on page</i></p>
+                    <p>&nbsp;</p>
+                    <p><i>Quote Text</i></p>
+                </div>
+                <div id="error-container-text-cancel">
+                    <i class="fa fa-times" id="close"></i>
                 </div>
             </div>
         </div>
-        <script src="javascript.js" async defer></script>
-    </body>
+    </div>
+    <script src="javascript.js" async defer></script>
+</body>
+
 </html>

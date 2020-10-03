@@ -12,237 +12,152 @@
   /* Full width */
   height: 100%;
   /* Full height */
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
   /* Black w/ opacity */
-  /* The content box that will host both the button div and the table */
-}
-
-#modal-content {
-  margin: 0.5em 2em;
-  height: 90%;
-  padding: 2em;
-  border: 10px solid ivory;
-  width: 80%;
-}
-
-#modal-content-table {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  height: 90%;
-  overflow: auto;
-}
-
-#modal-content-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 10%;
-}
-
-#modal-content-buttons .modalButtons {
-  font-size: 1.4rem;
-  border: 2px solid ivory;
-  margin: 0em 2em;
-  padding: 0.5em;
-}
+  /* The content box that will host both the button div and the table */ }
+  #modal-content {
+    margin: 0.5em 2em;
+    height: 90%;
+    padding: 2em;
+    border: 10px solid ivory;
+    width: 80%; }
+    #modal-content-table {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      height: 90%;
+      overflow: auto; }
+    #modal-content-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 10%; }
+      #modal-content-buttons .modalButtons {
+        font-size: 1.4rem;
+        border: 2px solid ivory;
+        margin: 0em 2em;
+        padding: 0.5em; }
 
 @media only screen and (max-width: 1024px) and (min-width: 768px) {
   #main-text-title {
-    font-size: 2.2rem;
-  }
+    font-size: 2.2rem; }
   #main-text-author {
-    font-size: 2rem;
-  }
+    font-size: 2rem; }
   #main-text-quote {
-    font-size: 1.3rem;
-  }
+    font-size: 1.3rem; }
   #main-buttons button {
-    font-size: 1.5rem;
-  }
-}
+    font-size: 1.5rem; } }
 
 @media only screen and (max-width: 768px), screen and (max-height: 768px) and (max-width: 1024px) {
   #main-buttons {
-    margin-top: 1rem;
-  }
-  #main-buttons button {
-    border: 1px solid #fffff0;
-    font-size: 1.2rem;
-    padding: 1.4rem 0.4rem;
-  }
-  #main-buttons #helpBtn {
-    display: block;
-  }
-  #main-buttons #help {
-    display: none;
-  }
+    margin-top: 1rem; }
+    #main-buttons button {
+      border: 1px solid #fffff0;
+      font-size: 1.2rem;
+      padding: 1.4rem 0.4rem; }
+    #main-buttons #helpBtn {
+      display: block; }
+    #main-buttons #help {
+      display: none; }
   #main-text-title {
-    font-size: 2rem;
-  }
+    font-size: 2rem; }
   #main-text-author {
-    font-size: 1.8rem;
-  }
+    font-size: 1.8rem; }
   #main-text-quote {
-    font-size: 1.2rem;
-  }
+    font-size: 1.2rem; }
   #modal-content {
     width: 100%;
-    height: 100%;
-  }
-  #modal-content-table {
-    height: 93%;
-  }
-  #modal-content-buttons {
-    height: 7%;
-  }
-  #modal-content-buttons .modalButtons {
-    font-size: 1rem;
-  }
-}
+    height: 100%; }
+    #modal-content-table {
+      height: 93%; }
+    #modal-content-buttons {
+      height: 7%; }
+      #modal-content-buttons .modalButtons {
+        font-size: 1rem; } }
 
 @media only screen and (max-width: 500px), screen and (max-height: 360) {
   #main {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    min-height: 100%;
-  }
-  #main-buttons {
-    margin: 1rem 0;
-    position: relative;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    text-align: center;
-    left: 0;
-  }
-  #main-buttons .btn {
-    padding: 0.5rem 0.5rem;
-    margin: 0 0.3em;
-    line-height: 1.4rem;
-    width: 90px;
-    font-size: 1rem;
-  }
-  #main-text {
-    width: 100%;
-    -webkit-transform: translateX(0%);
-            transform: translateX(0%);
-    margin: 0;
-    padding: 1rem 1rem 0 1rem;
-  }
-  #main-text-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  #main-text-author {
-    font-size: 1.3rem;
-    margin-bottom: 1.1rem;
-  }
-  #main-text-quote {
-    font-size: 1rem;
-  }
-  #main-help-overlay ul {
-    width: 49%;
-  }
+    flex-direction: column;
+    min-height: 100%; }
+    #main-buttons {
+      margin: 1rem 0;
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      left: 0; }
+      #main-buttons .btn {
+        padding: 0.5rem 0.5rem;
+        margin: 0 0.3em;
+        line-height: 1.4rem;
+        width: 90px;
+        font-size: 1rem; }
+    #main-text {
+      width: 100%;
+      transform: translateX(0%);
+      margin: 0;
+      padding: 1rem 1rem 0 1rem; }
+      #main-text-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem; }
+      #main-text-author {
+        font-size: 1.3rem;
+        margin-bottom: 1.1rem; }
+      #main-text-quote {
+        font-size: 1rem; }
+    #main-help-overlay ul {
+      width: 49%; }
   #modal-content {
     padding: 0.2rem;
     border: 2px solid ivory;
     height: 95%;
     width: 100%;
-    margin: 0;
-  }
-  #modal-content-table {
-    font-size: 0.5rem;
-    height: 93%;
-  }
-  #modal-content-buttons {
-    height: auto;
-    margin-top: 1rem;
-  }
-  #modal-content-buttons .modalButtons {
-    font-size: 0.6rem;
-    margin: 0 0.6rem;
-  }
+    margin: 0; }
+    #modal-content-table {
+      font-size: 0.5rem;
+      height: 93%; }
+    #modal-content-buttons {
+      height: auto;
+      margin-top: 1rem; }
+      #modal-content-buttons .modalButtons {
+        font-size: 0.6rem;
+        margin: 0 0.6rem; }
   #error-container {
-    width: 100%;
-  }
-}
+    width: 100%; } }
 
 * {
   padding: 0;
   margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   background-color: #2b2b2b;
   color: #fffff0;
-  font-family: "Lora", sans-serif;
-}
+  font-family: "Lora", sans-serif; }
 
 html {
-  overflow-y: scroll;
-}
+  overflow-y: scroll; }
 
 table,
 th,
 td {
   border: 1px solid ivory;
-  padding: 0.5em;
-}
+  padding: 0.5em; }
 
 table {
-  width: 100%;
-}
+  width: 100%; }
 
 td {
-  font-style: italic;
-}
+  font-style: italic; }
 
 th {
   text-align: left;
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 .btn {
   line-height: 1rem;
@@ -254,232 +169,141 @@ th {
   font-weight: 500;
   border: 2px solid ivory;
   outline: 0;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 #main {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  position: relative;
-}
-
-#main-help {
-  background: #4d4d4d;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  text-align: center;
-  visibility: hidden;
-  z-index: 2;
-  overflow: hidden;
-  opacity: 0.95;
-}
-
-#main-help-overlay {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 0;
-      -ms-flex: none;
-          flex: none;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  -webkit-transition: all 400ms ease;
-  transition: all 400ms ease;
-  background: #333;
-  width: 200vw;
-  height: 200vh;
-  border-radius: 50%;
-}
-
-#main-help-overlay > ul {
-  position: relative;
-  text-align: left;
-  max-height: 100vh;
-  opacity: 0;
-  -webkit-transition: all 400ms ease 400ms;
-  transition: all 400ms ease 400ms;
-  text-decoration: none;
-  list-style: none;
-}
-
-#main-help-overlay > ul #close {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-}
-
-#main-help-overlay > ul > li {
-  padding: 0.5rem 1.5rem;
-  -webkit-transition: color 400ms ease;
-  transition: color 400ms ease;
-}
-
-#main-help-overlay > ul > li:nth-child(2) {
-  margin-top: 2rem;
-}
-
-#main-help-overlay > ul > li:nth-child(5) {
-  margin-bottom: 2rem;
-}
-
-#main-help-overlay > ul > li i {
-  margin: 0 1rem;
-  width: 30px;
-}
-
-#main-text {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  width: 50%;
-  -webkit-transform: translateX(35%);
-          transform: translateX(35%);
-  margin: 3rem 2rem;
-  position: relative;
-  z-index: 0;
-}
-
-#main-text-title {
-  font-size: 2.5rem;
-  text-align: left;
-  margin-bottom: 4rem;
-}
-
-#main-text-author {
-  height: auto;
-  font-style: italic;
-  font-size: 2.2rem;
-  text-align: left;
-  margin-bottom: 2rem;
-}
-
-#main-text-quote {
-  width: 100%;
-  font-size: 1.5rem;
-  font-style: italic;
-  text-align: left;
-  line-height: 1.3em;
-}
-
-#main-buttons {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  text-align: center;
-  z-index: 1;
-  position: fixed;
-  width: auto;
-  left: 10%;
-  top: 10%;
-}
-
-#main-buttons #getPath {
-  display: none;
-}
-
-#main-buttons #linkKindle {
-  position: relative;
-}
-
-#main-buttons #help:hover #toolTip {
-  visibility: visible;
-}
-
-#main-buttons #helpBtn {
-  display: none;
-}
-
-#main-buttons #toolTip {
-  cursor: auto;
-  visibility: hidden;
-  position: absolute;
-  width: 580px;
-  text-align: left;
-  top: -90%;
-  left: 90%;
-  font-size: 1rem;
-  border: 2px solid ivory;
-  padding: 0.5rem;
-}
-
-#main-buttons #toolTip .tip {
-  display: block;
-}
-
-#main-buttons #toolTip .tip i {
-  margin: 0 1rem;
-  width: 30px;
-}
+  justify-content: space-around;
+  position: relative; }
+  #main-help {
+    background: #4d4d4d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    visibility: hidden;
+    z-index: 2;
+    overflow: hidden;
+    opacity: 0.95; }
+    #main-help-overlay {
+      display: flex;
+      flex: none;
+      justify-content: center;
+      align-items: center;
+      transform: scale(0);
+      transition: all 400ms ease;
+      background: #333;
+      width: 200vw;
+      height: 200vh;
+      border-radius: 50%; }
+      #main-help-overlay > ul {
+        position: relative;
+        text-align: left;
+        max-height: 100vh;
+        opacity: 0;
+        transition: all 400ms ease 400ms;
+        text-decoration: none;
+        list-style: none; }
+        #main-help-overlay > ul #close {
+          position: absolute;
+          top: 5px;
+          right: 5px; }
+        #main-help-overlay > ul > li {
+          padding: 0.5rem 1.5rem;
+          transition: color 400ms ease; }
+          #main-help-overlay > ul > li:nth-child(2) {
+            margin-top: 2rem; }
+          #main-help-overlay > ul > li:nth-child(5) {
+            margin-bottom: 2rem; }
+          #main-help-overlay > ul > li i {
+            margin: 0 1rem;
+            width: 30px; }
+  #main-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+    transform: translateX(35%);
+    margin: 3rem 2rem;
+    position: relative;
+    z-index: 0; }
+    #main-text-title {
+      font-size: 2.5rem;
+      text-align: left;
+      margin-bottom: 4rem; }
+    #main-text-author {
+      height: auto;
+      font-style: italic;
+      font-size: 2.2rem;
+      text-align: left;
+      margin-bottom: 2rem; }
+    #main-text-quote {
+      width: 100%;
+      font-size: 1.5rem;
+      font-style: italic;
+      text-align: left;
+      line-height: 1.3em; }
+  #main-buttons {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 1;
+    position: fixed;
+    width: auto;
+    left: 10%;
+    top: 10%; }
+    #main-buttons #getPath {
+      display: none; }
+    #main-buttons #linkKindle {
+      position: relative; }
+    #main-buttons #help:hover #toolTip {
+      visibility: visible; }
+    #main-buttons #helpBtn {
+      display: none; }
+    #main-buttons #toolTip {
+      cursor: auto;
+      visibility: hidden;
+      position: absolute;
+      width: 580px;
+      text-align: left;
+      top: -90%;
+      left: 90%;
+      font-size: 1rem;
+      border: 2px solid ivory;
+      padding: 0.5rem; }
+      #main-buttons #toolTip .tip {
+        display: block; }
+        #main-buttons #toolTip .tip i {
+          margin: 0 1rem;
+          width: 30px; }
 
 #error {
   visibility: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   position: fixed;
   background-color: rgba(0, 0, 0, 0);
   padding: 0.5rem 0.5rem 0 0.5rem;
   z-index: 3;
   bottom: 0;
-  -webkit-transform: translateY(300px);
-          transform: translateY(300px);
-}
-
-#error-container {
-  width: 50%;
-  padding: 1rem 1rem 0 1rem;
-  border-radius: 6px 6px 0 0;
-  border: 2px solid ivory;
-  border-bottom: 0;
-}
-
-#error-container-text {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding-bottom: 1rem;
-}
-
-#error-container-text-cancel {
-  padding-left: 1rem;
-  cursor: pointer;
-}
-/*# sourceMappingURL=style.css.map */
+  transform: translateY(300px); }
+  #error-container {
+    width: 50%;
+    padding: 1rem 1rem 0 1rem;
+    border-radius: 6px 6px 0 0;
+    border: 2px solid ivory;
+    border-bottom: 0; }
+    #error-container-text {
+      position: relative;
+      display: flex;
+      padding-bottom: 1rem; }
+      #error-container-text-cancel {
+        padding-left: 1rem;
+        cursor: pointer; }
