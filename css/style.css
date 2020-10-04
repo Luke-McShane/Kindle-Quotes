@@ -43,95 +43,6 @@
         margin: 0em 2em;
         padding: 0.5em; }
 
-@media only screen and (max-width: 1024px) and (min-width: 768px) {
-  #main-text-title {
-    font-size: 2.2rem; }
-  #main-text-author {
-    font-size: 2rem; }
-  #main-text-quote {
-    font-size: 1.3rem; }
-  #main-buttons button {
-    font-size: 1.5rem; } }
-
-@media only screen and (max-width: 768px), screen and (max-height: 768px) and (max-width: 1024px) {
-  #main-buttons {
-    margin-top: 1rem; }
-    #main-buttons button {
-      border: 1px solid #fffff0;
-      font-size: 1.2rem;
-      padding: 1.4rem 0.4rem; }
-    #main-buttons #helpBtn {
-      display: block; }
-    #main-buttons #help {
-      display: none; }
-  #main-text-title {
-    font-size: 2rem; }
-  #main-text-author {
-    font-size: 1.8rem; }
-  #main-text-quote {
-    font-size: 1.2rem; }
-  #modal-content {
-    width: 100%;
-    height: 100%; }
-    #modal-content-table {
-      height: 93%; }
-    #modal-content-buttons {
-      height: 7%; }
-      #modal-content-buttons .modalButtons {
-        font-size: 1rem; } }
-
-@media only screen and (max-width: 500px), screen and (max-height: 360) {
-  #main {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%; }
-    #main-buttons {
-      margin: 1rem 0;
-      position: relative;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      left: 0; }
-      #main-buttons .btn {
-        padding: 0.5rem 0.5rem;
-        margin: 0 0.3em;
-        line-height: 1.4rem;
-        width: 90px;
-        font-size: 1rem; }
-    #main-text {
-      width: 100%;
-      transform: translateX(0%);
-      margin: 0;
-      padding: 1rem 1rem 0 1rem; }
-      #main-text-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem; }
-      #main-text-author {
-        font-size: 1.3rem;
-        margin-bottom: 1.1rem; }
-      #main-text-quote {
-        font-size: 1rem; }
-    #main-help-overlay ul {
-      width: 49%; }
-  #modal-content {
-    padding: 0.2rem;
-    border: 2px solid ivory;
-    height: 95%;
-    width: 100%;
-    margin: 0; }
-    #modal-content-table {
-      font-size: 0.5rem;
-      height: 93%; }
-    #modal-content-buttons {
-      height: auto;
-      margin-top: 1rem; }
-      #modal-content-buttons .modalButtons {
-        font-size: 0.6rem;
-        margin: 0 0.6rem; }
-  #error-container {
-    width: 100%; } }
-
 * {
   padding: 0;
   margin: 0;
@@ -307,3 +218,80 @@ th {
       #error-container-text-cancel {
         padding-left: 1rem;
         cursor: pointer; }
+
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+  #main-text-title {
+    font-size: 2.2rem; }
+  #main-text-author {
+    font-size: 2rem; }
+  #main-text-quote {
+    font-size: 1.3rem; }
+  #main-buttons button {
+    font-size: 1.5rem; } }
+
+@media only screen and (max-width: 768px), screen and (max-height: 768px) and (max-width: 1024px) {
+  #main-buttons {
+    margin-top: 1rem; }
+    #main-buttons button {
+      border: 1px solid #fffff0;
+      font-size: 1.2rem;
+      padding: 1.4rem 0.4rem; }
+    #main-buttons #bookSelect,
+    #main-buttons #linkKindle {
+      display: none; }
+  #main-text-title {
+    font-size: 2rem; }
+  #main-text-author {
+    font-size: 1.8rem; }
+  #main-text-quote {
+    font-size: 1.2rem; }
+  #modal-content {
+    width: 100%;
+    height: 100%; }
+    #modal-content-table {
+      height: 93%; }
+    #modal-content-buttons {
+      height: 7%; }
+      #modal-content-buttons .modalButtons {
+        font-size: 1rem; } }
+
+@media only screen and (max-width: 500px), screen and (max-height: 360) {
+  #main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; }
+    #main-buttons {
+      margin: 1rem 0;
+      position: relative;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      left: 0; }
+      #main-buttons .btn {
+        padding: 0.5rem 0.5rem;
+        margin: 0 0.3em;
+        line-height: 1.4rem;
+        width: 90px;
+        font-size: 1rem; }
+      #main-buttons #bookSelect,
+      #main-buttons #linkKindle {
+        display: none; }
+    #main-text {
+      width: 100%;
+      transform: translateX(0%);
+      margin: 0;
+      padding: 1rem 1rem 0 1rem; }
+      #main-text-title {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        text-align: center; }
+      #main-text-author {
+        font-size: 1.3rem;
+        margin-bottom: 1.1rem; }
+      #main-text-quote {
+        font-size: 1rem; }
+    #main-help-overlay ul {
+      width: 49%; }
+  #error-container {
+    width: 100%; } }

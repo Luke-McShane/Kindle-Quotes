@@ -12,12 +12,8 @@ screen and (max-height: 768px) and (max-width:1024px) {
         padding: 1.4rem 0.4rem;
       }
 
-      // Remove the #help span so the user has the ability to click a button to now show the guide on how to use the site
-      #helpBtn {
-        display: block;
-      }
-
-      #help {
+      #bookSelect,
+      #linkKindle {
         display: none;
       }
     }

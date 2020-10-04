@@ -1,9 +1,6 @@
-// Import all partials
+// Import partials for variables and modal
 @import "modal";
 @import "variables";
-@import "tablet_large";
-@import "tablet";
-@import "phone";
 
 * {
   padding: 0;
@@ -245,3 +242,9 @@ th {
     }
   }
 }
+
+// Import media query partials so they are not overrun as they would be if
+// imported at the beginning of this stylesheet
+@import "tablet_large";
+@import "tablet";
+@import "phone";

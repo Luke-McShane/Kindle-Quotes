@@ -340,7 +340,21 @@ function app() {
 		error.style.visibility = 'hidden';
 		error.style.transform = 'translateY(300px)';
 	});
+
+	// Adds listener so that, when the screen is of a tablet size or smaller, remove the quoteGen button from
+	// the main-buttons div, and append it to the main-text div
+	// Next job is to reset the button position after the screen size is larger than a tablet
+	const mediaQuery = window.matchMedia('(max-width: 768px)');
+	mediaQuery.addListener(handleTabletSize);
 	getDefaultClippings();
+}
+
+function handleTabletSize(e) {
+	let btn = document.getElementById('quoteGen');
+	let oldParent = document.getElementById('main-buttons');
+	let newParent = document.getElementById('main-text');
+	newParent.appendChild(btn);
+	oldParent.removeChild(btn);
 }
 
 // Read in the default file
