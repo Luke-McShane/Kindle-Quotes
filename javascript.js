@@ -16,7 +16,7 @@ function parseText(text) {
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
 		for (let j = 0; j < chunkedText[i].length; j++) {
-			console.log(chunkedText[i][j]);
+			//console.log(chunkedText[i][j]);
 			// If the section begins with '- Your Bookmark', there will be no quote, and we thus do not want this displaying
 			if (chunkedText[i][j].includes('- Your Bookmark')) {
 				chunkedText.splice(i, 1);
@@ -25,7 +25,7 @@ function parseText(text) {
 			} else if (chunkedText[i][j].includes('- Your Highlight on page')) {
 				chunkedText[i].splice(j, 1);
 			} else if (chunkedText[i][j].length <= 4) {
-				console.log(chunkedText[i])
+				//console.log(chunkedText[i])
 				chunkedText[i].splice(j, 1);
 			}
 		}
@@ -303,7 +303,8 @@ function getOverlay() {
 // Ensure all buttons are setup correctly before reading in the default clippings file that contains an abundance of Kindle quotes
 function app() {
 	// Setup event listeners
-	document.getElementById('quoteGen').addEventListener('click', quoteGen);
+	document.getElementById('quoteGenPC').addEventListener('click', quoteGen);
+	document.getElementById('quoteGenSmall').addEventListener('click', quoteGen);
 	document.getElementById('bookSelect').addEventListener('click', bookSelect);
 	document.getElementById('buttonSave').addEventListener('click', saveSelection);
 	document.getElementById('buttonCancel').addEventListener('click', cancelSelection);
@@ -344,18 +345,18 @@ function app() {
 	// Adds listener so that, when the screen is of a tablet size or smaller, remove the quoteGen button from
 	// the main-buttons div, and append it to the main-text div
 	// Next job is to reset the button position after the screen size is larger than a tablet
-	const mediaQuery = window.matchMedia('(max-width: 768px)');
-	mediaQuery.addListener(handleTabletSize);
+	// const mediaQuery = window.matchMedia('(max-width: 768px)');
+	// mediaQuery.addEventListener('change', handleTabletSize);
 	getDefaultClippings();
 }
 
-function handleTabletSize(e) {
-	let btn = document.getElementById('quoteGen');
-	let oldParent = document.getElementById('main-buttons');
-	let newParent = document.getElementById('main-text');
-	newParent.appendChild(btn);
-	oldParent.removeChild(btn);
-}
+// function handleTabletSize(e) {
+// 	let btn = document.getElementById('quoteGen');
+// 	let oldParent = document.getElementById('main-buttons');
+// 	let newParent = document.getElementById('main-text');
+// 	newParent.appendChild(btn);
+// 	oldParent.removeChild(btn);
+// }
 
 // Read in the default file
 function getDefaultClippings() {

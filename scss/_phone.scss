@@ -1,12 +1,14 @@
 // Media query for phones, including when a phone is used in landscape
 @media only screen and (max-width: 500px),
-screen and (max-height: 360) {
+screen and (max-height: 360px) {
   #main {
     // Set a min height so that the size of the quote doesn't pull down the buttons, which would happen due to the display being flex and thus
     // how this encourages the elements to evenly spread over the page
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    width: 100%;
+    align-items: center;
 
     &-buttons {
       margin: 1rem 0;
@@ -24,22 +26,17 @@ screen and (max-height: 360) {
         width: 90px;
         font-size: 1rem;
       }
-
-      #bookSelect,
-      #linkKindle {
-        display: none;
-      }
     }
 
     &-text {
       width: 100%;
       transform: translateX(0%);
       margin: 0;
-      padding: 1rem 1rem 0 1rem;
+      padding: 1rem 2rem 0 2rem;
 
       &-title {
         font-size: 1.75rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.75rem;
         text-align: center;
       }
 
@@ -49,6 +46,9 @@ screen and (max-height: 360) {
       }
 
       &-quote {
+        font-size: 1rem;
+      }
+      #quoteGenSmall {
         font-size: 1rem;
       }
     }
@@ -62,7 +62,6 @@ screen and (max-height: 360) {
     }
 
   }
-
 
   #error-container {
     width: 100%;

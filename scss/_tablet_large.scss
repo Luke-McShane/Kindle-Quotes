@@ -19,6 +19,41 @@
       button {
         font-size: 1.5rem;
       }
+     
     }
   }
+}
+
+@media only screen and (max-width: 1024px) {
+
+  #main-text {
+    transform: translateX(0);
+    width: 75%;
+    &-title {
+      text-align: center;
+    }
+  }
+
+  // I want the button to be at the bottom if there is only little text in the quote, and at the bottom of the page
+  // if there is enough text to cause overflow
+  #main-text #quoteGenSmall { 
+    position: sticky;
+    bottom: 10%;
+    height: auto;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-self: center;
+    margin-top: 3rem;
+    line-height: 2rem;
+  }
+
+  #quoteGenPC {
+    display: none;
+  }
+  
+  #bookSelect,
+  #linkKindle {
+        display: none;
+      }
 }

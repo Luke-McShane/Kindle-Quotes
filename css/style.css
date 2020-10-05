@@ -159,6 +159,8 @@ th {
       font-style: italic;
       text-align: left;
       line-height: 1.3em; }
+    #main-text #quoteGenSmall {
+      display: none; }
   #main-buttons {
     position: relative;
     display: flex;
@@ -229,6 +231,28 @@ th {
   #main-buttons button {
     font-size: 1.5rem; } }
 
+@media only screen and (max-width: 1024px) {
+  #main-text {
+    transform: translateX(0);
+    width: 75%; }
+    #main-text-title {
+      text-align: center; }
+  #main-text #quoteGenSmall {
+    position: sticky;
+    bottom: 10%;
+    height: auto;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-self: center;
+    margin-top: 3rem;
+    line-height: 2rem; }
+  #quoteGenPC {
+    display: none; }
+  #bookSelect,
+  #linkKindle {
+    display: none; } }
+
 @media only screen and (max-width: 768px), screen and (max-height: 768px) and (max-width: 1024px) {
   #main-buttons {
     margin-top: 1rem; }
@@ -255,11 +279,13 @@ th {
       #modal-content-buttons .modalButtons {
         font-size: 1rem; } }
 
-@media only screen and (max-width: 500px), screen and (max-height: 360) {
+@media only screen and (max-width: 500px), screen and (max-height: 360px) {
   #main {
     display: flex;
     flex-direction: column;
-    min-height: 100%; }
+    min-height: 100%;
+    width: 100%;
+    align-items: center; }
     #main-buttons {
       margin: 1rem 0;
       position: relative;
@@ -274,22 +300,21 @@ th {
         line-height: 1.4rem;
         width: 90px;
         font-size: 1rem; }
-      #main-buttons #bookSelect,
-      #main-buttons #linkKindle {
-        display: none; }
     #main-text {
       width: 100%;
       transform: translateX(0%);
       margin: 0;
-      padding: 1rem 1rem 0 1rem; }
+      padding: 1rem 2rem 0 2rem; }
       #main-text-title {
         font-size: 1.75rem;
-        margin-bottom: 1rem;
+        margin-bottom: 1.75rem;
         text-align: center; }
       #main-text-author {
         font-size: 1.3rem;
         margin-bottom: 1.1rem; }
       #main-text-quote {
+        font-size: 1rem; }
+      #main-text #quoteGenSmall {
         font-size: 1rem; }
     #main-help-overlay ul {
       width: 49%; }
