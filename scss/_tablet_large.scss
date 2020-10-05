@@ -36,9 +36,7 @@
 
   // I want the button to be at the bottom if there is only little text in the quote, and at the bottom of the page
   // if there is enough text to cause overflow
-  #main-text #quoteGenSmall { 
-    position: sticky;
-    bottom: 10%;
+  #main-text #quoteGenSmall {
     height: auto;
     display: flex;
     width: 50%;
