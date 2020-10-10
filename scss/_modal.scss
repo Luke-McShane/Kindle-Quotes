@@ -33,6 +33,7 @@
       align-items: flex-start;
       height: 90%;
       overflow: auto;
+      margin-bottom: 0.5rem;
     }
 
     &-buttons {
@@ -40,10 +41,10 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      height: 10%;
+      height: 8%;
 
       .modalButtons {
-        font-size: 1.4rem;
+        font-size: 0.9rem;
         border: 2px solid ivory;
         margin: 0em 2em;
         padding: 0.5em;
