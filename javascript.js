@@ -16,7 +16,7 @@ function parseText(text) {
 	for (let i = 0; i < chunkedText.length; i++) {
 		chunkedText[i] = chunkedText[i].split('\n');
 		for (let j = 0; j < chunkedText[i].length; j++) {
-			//console.log(chunkedText[i][j]);
+			console.log(chunkedText[i][j]);
 			// If the section begins with '- Your Bookmark', there will be no quote, and we thus do not want this displaying
 			if (chunkedText[i][j].includes('- Your Bookmark')) {
 				chunkedText.splice(i, 1);
@@ -360,19 +360,26 @@ function app() {
 
 // Read in the default file
 function getDefaultClippings() {
+
 	let allText;
+	console.log(localStorage.getItem('text') === null);
 	if (localStorage.getItem('text') === null) {
 		const rawFile = new XMLHttpRequest();
-		rawFile.open('GET', 'My Clippings.txt', false);
+		// rawFile.open('GET', 'my_clippings.txt', false);
+		rawFile.open('GET', 'my_clippings.txt', false);
+		// rawFile.onload = function () {
+		// if (rawFile.onreadystatechange === 4) {
 		rawFile.onreadystatechange = function () {
 			if (rawFile.readyState === 4) {
 				if (rawFile.status === 200 || rawFile.status == 0) {
 					allText = rawFile.responseText;
-					parseText(rawFile.responseText);
+					console.log(allText);
+					parseText(allText);
 				}
 			}
-			rawFile.send(null);
-		};
+		} //else console.log("WHUT");
+		rawFile.send(null);
+		// };
 	} else parseText(localStorage.getItem('text'));
 }
 
